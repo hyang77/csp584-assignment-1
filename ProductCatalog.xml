@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ProductCatalog>
+
+<TvCatalog>
+    <tv id="TCL 32 Roku HD LED Smart TV">
+        <name>TCL 32 Roku HD LED Smart TV</name>
+        <price>129.99</price>
+        <image>tv1.jpg</image>
+        <manufacturer>TCL</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+		<accessories>
+            <accessory>xboxone_wc</accessory>
+            <accessory>xboxone_sh</accessory>
+			<accessory>xboxone_kg</accessory>
+            <accessory>xboxone_vb</accessory>
+			<accessory>xboxone_rs</accessory>
+            <accessory>xboxone_mp</accessory>
+			<accessory>xboxone_mc</accessory>
+			
+			
+        </accessories>
+    </tv>
+	<tv id="TCL 55 Roku 4K UHD HDR Smart TV">
+        <name>TCL 55 Roku 4K UHD HDR Smart TV</name>
+        <price>299.99</price>
+        <image>tv2.jpg</image>
+        <manufacturer>TCL</manufacturer>
+        <condition>New</condition>
+        <discount>20.0</discount>
+    </tv>
+	<tv id="Samsung 50 Smart 4K HDR UHD TV - Glossy Black">
+        <name>Samsung 50 Smart 4K HDR UHD TV - Glossy Black</name>
+        <price>329.99</price>
+        <image>tv3.jpg</image>
+        <manufacturer>Samsung</manufacturer>
+        <condition>New</condition>
+        <discount>20.0</discount>
+    </tv>
+	<tv id="LG 43 Class 4K UHD Smart LED HDR TV">
+        <name>LG 43 Class 4K UHD Smart LED HDR TV</name>
+        <price>249.99</price>
+        <image>tv4.jpg</image>
+        <manufacturer>LG</manufacturer>
+        <condition>New</condition>
+        <discount>20.0</discount>
+    </tv>
+	<tv id="LG 55 Class 4K UHD Smart LED HDR TV">
+        <name>LG 55 Class 4K UHD Smart LED HDR TV</name>
+        <price>379.99</price>
+        <image>tv4.jpg</image>
+        <manufacturer>LG</manufacturer>
+        <condition>New</condition>
+        <discount>20.0</discount>
+    </tv>
+    
+</TvCatalog>
+
+<SoundSystemCatalog>
+    <sound id="Sony XB12 Portable Wireless Bluetooth Speaker">
+        <name>Sony XB12 Portable Wireless Bluetooth Speaker</name>
+        <price>59.99</price>
+        <image>speaker1.jpg</image>
+        <manufacturer>Sony</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+    </sound>
+	<sound id="Amazon Echo Dot (3rd Generation)">
+        <name>Amazon Echo Dot (3rd Generation)</name>
+        <price>49.99</price>
+        <image>speaker2.jpg</image>
+        <manufacturer>Amazon</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+    </sound>
+	<sound id="Bose Portable VPA Wireless Speaker">
+        <name>Bose Portable VPA Wireless Speaker</name>
+        <price>349.99</price>
+        <image>speaker3.jpg</image>
+        <manufacturer>Bose</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+    </sound>
+	<sound id="Bose SoundLink Revolve Plus Bluetooth Speaker">
+        <name>Bose SoundLink Revolve Plus Bluetooth Speaker</name>
+        <price>299.99</price>
+        <image>speaker4.jpg</image>
+        <manufacturer>Bose</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+    </sound>
+	<sound id="Bose SoundLink Micro Bluetooth Speaker">
+        <name>Bose SoundLink Micro Bluetooth Speaker</name>
+        <price>99.99</price>
+        <image>speaker5.jpg</image>
+        <manufacturer>Bose</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+    </sound>
+</SoundSystemCatalog>
+
+<PhoneCatalog>
+<phone id="Apple iPhone SE (2nd generation)">
+        <name>Apple iPhone SE (2nd generation)</name>
+        <price>399.00</price>
+        <image>phone1.jpg</image>
+        <manufacturer>Apple</manufacturer>
+        <condition>New</condition>
+        <discount>20.0</discount>
+</phone>
+<phone id="Apple iPhone 11">
+        <name>Apple iPhone 11</name>
+        <price>299.99</price>
+        <image>phone2.jpg</image>
+        <manufacturer>Apple</manufacturer>
+        <condition>New</condition>
+        <discount>20.0</discount>
+</phone>
+<phone id="Apple iPhone 11 Pro">
+        <name>Apple iPhone 11 Pro</name>
+        <price>349.99</price>
+        <image>phone3.jpg</image>
+        <manufacturer>Apple</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+</phone>
+<phone id="Apple iPhone 11 Pro Max">
+        <name>Apple iPhone 11 Pro Max</name>
+        <price>432.99</price>
+        <image>phone4.jpg</image>
+        <manufacturer>Apple</manufacturer>
+        <condition>New</condition>
+        <discount>20.0</discount>
+</phone>
+<phone id="Apple iPhone 7 Plus">
+        <name>Apple iPhone 7 Plus</name>
+        <price>299.99</price>
+        <image>phone5.jpg</image>
+        <manufacturer>Apple</manufacturer>
+        <condition>New</condition>
+        <discount>10.0</discount>
+</phone>
+
+</PhoneCatalog>
+
+<AccessoryCatalog>
+
+    <accessory id="xboxone_wc">
+        <name>Controller</name>
+        <price>89.99</price>
+        <image>XBOX controller.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="xboxone_sh">
+        <name>Turtle Beach Headset</name>
+        <price>89.99</price>
+        <image>Turtle Beach Headset.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+	 <accessory id="xboxone_vb">
+        <name>joystick</name>
+        <price>89.99</price>
+        <image>joystick.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="xboxone_kg">
+        <name>Keypad</name>
+        <price>89.99</price>
+        <image>keypad.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+	 <accessory id="xboxone_rs">
+        <name>Starterkit</name>
+        <price>89.99</price>
+        <image>starterkit.jpeg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="xboxone_mp">
+        <name>Wireless adpter</name>
+        <price>89.99</price>
+        <image>wirelessadapter.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+	 <accessory id="xboxone_mc">
+        <name>Wireless </name>
+        <price>89.99</price>
+        <image>wirelessadapter.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+
+    <accessory id="xbox360_wc">
+        <name>XBOX Speeding Wheel</name>
+        <price>89.99</price>
+        <image>XBOX360-SpeedWheel.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="xbox360_sh">
+        <name>XBOX Wireless Adapter</name>
+        <price>89.99</price>
+        <image>xbox360_wa.png</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+	 <accessory id="xbox360_vb">
+        <name>Remote</name>
+        <price>89.99</price>
+        <image>remote.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 	 <accessory id="xbox360_rs">
+        <name>messengerkit</name>
+        <price>89.99</price>
+        <image>messengerkit.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+	 	 <accessory id="xbox360_mp">
+        <name>Steering</name>
+        <price>89.99</price>
+        <image>steering.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+	 	 <accessory id="xbox360_kg">
+        <name>Charger</name>
+        <price>89.99</price>
+        <image>charger.jpg</image>
+        <manufacturer>Microsoft</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="ps4_wc">
+        <name>PS Controller</name>
+        <price>89.99</price>
+        <image>XBOX controller.jpg</image>
+        <manufacturer>Sony</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="ps3_wc">
+        <name>PS Gaming HeadPhones</name>
+        <price>89.99</price>
+        <image>Turtle Beach Headset.jpg</image>
+        <manufacturer>Sony</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="nintendo_wc">
+        <name>Nintendo Controller</name>
+        <price>89.99</price>
+        <image>Wii1.jpg</image>
+        <manufacturer>Nintendo</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+
+    <accessory id="nintendo_sh">
+        <name>Nintendo Racing Controller</name>
+        <price>89.99</price>
+        <image>Wii2.jpg</image>
+        <manufacturer>Nintendo</manufacturer>
+        <condition>New</condition>
+        <discount>40.0</discount>
+     </accessory>
+	 
+  
+
+</AccessoryCatalog>
+
+
+
+
+
+</ProductCatalog>
