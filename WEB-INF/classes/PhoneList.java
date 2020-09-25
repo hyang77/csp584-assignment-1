@@ -69,7 +69,7 @@ public class PhoneList extends HttpServlet {
 
 		/* Header, Left Navigation Bar are Printed.
 
-		All the tablets and tablet information are dispalyed in the Content Section
+		All the phones and tablet information are dispalyed in the Content Section
 
 		and then Footer is Printed*/
 
@@ -92,17 +92,17 @@ public class PhoneList extends HttpServlet {
 					+ Phone.getImage() + "' alt='' /></li>");
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='tablets'>"+
+					"<input type='hidden' name='type' value='phones'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='tablets'>"+
+					"<input type='hidden' name='type' value='phones'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
 			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='tablets'>"+
+					"<input type='hidden' name='type' value='phones'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");

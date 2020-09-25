@@ -33,45 +33,45 @@ public class PrevAccessory extends HttpServlet {
 
 		/* Checks the Tablets type whether it is microsft or sony or nintendo */
 
-		HashMap<String, Console> hm = new HashMap<String, Console>();
+		HashMap<String, Tv> hm = new HashMap<String, Tv>();
 		if(CategoryName==null){
-			hm.putAll(SaxParserDataStore.consoles);
+			hm.putAll(SaxParserDataStore.tvs);
 			name = "";
 		}
 		else
 		{
-		   if(CategoryName.equals("microsoft"))
+		   if(CategoryName.equals("tcl"))
 		   {
-			 for(Map.Entry<String,Console> entry : SaxParserDataStore.consoles.entrySet())
+			 for(Map.Entry<String,Tv> entry : SaxParserDataStore.tvs.entrySet())
 			 {
-				if(entry.getValue().getRetailer().equals("Microsoft"))
+				if(entry.getValue().getRetailer().equals("TCL"))
 				 {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 			 }
-				name = "Microsoft";
+				name = "TCL";
 		   }
-		   else if(CategoryName.equals("sony"))
+		   else if(CategoryName.equals("samsung"))
 		    {
-			for(Map.Entry<String,Console> entry : SaxParserDataStore.consoles.entrySet())
+			for(Map.Entry<String,Tv> entry : SaxParserDataStore.tvs.entrySet())
 				{
-				 if(entry.getValue().getRetailer().equals("Sony"))
+				 if(entry.getValue().getRetailer().equals("Samsung"))
 				 {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}
-				 name = "Sony";
+				 name = "Samsung";
 			}
-			else if(CategoryName.equals("nintendo"))
+			else if(CategoryName.equals("lg"))
 			{
-				for(Map.Entry<String,Console> entry : SaxParserDataStore.consoles.entrySet())
+				for(Map.Entry<String,Tv> entry : SaxParserDataStore.tvs.entrySet())
 				{
-				 if(entry.getValue().getRetailer().equals("Nintendo"))
+				 if(entry.getValue().getRetailer().equals("LG"))
 				 {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}
-			   	 name = "Nintendo";
+			   	 name = "LG";
 			}
 		}
 		
@@ -85,32 +85,32 @@ public class PrevAccessory extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>"+name+" Consoles</a>");
+		pw.print("<a style='font-size: 24px;'>"+name+" Tvs</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 	//	int i = 1; int size= hm.size();
-		for(Map.Entry<String, Console> entry : hm.entrySet())
+		for(Map.Entry<String, Tv> entry : hm.entrySet())
 		{
-			Console console = entry.getValue();
-			if (console.getName().equals(ProductName))
+			Tv tv = entry.getValue();
+			if (tv.getName().equals(ProductName))
 			{
 			pw.print("<tr>");
 			pw.print("<td><div id='shop_item'>");
-			pw.print("<h3>"+console.getName()+"</h3>");
-			pw.print("<strong>$"+console.getPrice()+"</strong><ul>");
-			pw.print("<li id='item'><img src='images/consoles/"+console.getImage()+"' alt='' /></li>");
+			pw.print("<h3>"+tv.getName()+"</h3>");
+			pw.print("<strong>$"+tv.getPrice()+"</strong><ul>");
+			pw.print("<li id='item'><img src='images/tvs/"+tv.getImage()+"' alt='' /></li>");
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='consoles'>"+
+					"<input type='hidden' name='type' value='tvs'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='consoles'>"+
+					"<input type='hidden' name='type' value='tvs'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
 			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='consoles'>"+
+					"<input type='hidden' name='type' value='tvs'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
@@ -124,12 +124,12 @@ public class PrevAccessory extends HttpServlet {
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 		pw.print("<a style='font-size: 24px;'>"+ProductName+" Accessories</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
-		Console console1 = hm.get(ProductName);
+		Tv tv1 = hm.get(ProductName);
 		System.out.print(ProductName);
 		int i = 1; int size= hm.size();
 		pw.print("<tr>");
 		ArrayList<String> arr = new ArrayList<String> ();
-		for(Map.Entry<String, String> acc:console1.getAccessories().entrySet())
+		for(Map.Entry<String, String> acc:tv1.getAccessories().entrySet())
 		{
 			
 			arr.add(acc.getValue());

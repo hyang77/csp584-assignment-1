@@ -24,33 +24,33 @@ public class AccessoryList extends HttpServlet {
 
 		String CategoryName = request.getParameter("maker");
 //		String ConsoleName = request.getParameter("console");
-		HashMap<String, Console> hm = new HashMap<String, Console>();
-			if(CategoryName.equals("microsoft"))
+		HashMap<String, Tv> hm = new HashMap<String, Tv>();
+			if(CategoryName.equals("tcl"))
 			{
-				for(Map.Entry<String,Console> entry : SaxParserDataStore.consoles.entrySet())
+				for(Map.Entry<String,Tv> entry : SaxParserDataStore.tvs.entrySet())
 				{	
-					if(entry.getValue().getRetailer().equals("Microsoft"))
+					if(entry.getValue().getRetailer().equals("TCL"))
 					{
 					 hm.put(entry.getValue().getId(),entry.getValue());
 					}
 				}
 				
 			}
-			else if(CategoryName.equals("sony"))
+			else if(CategoryName.equals("samsung"))
 			{	
-				for(Map.Entry<String,Console> entry : SaxParserDataStore.consoles.entrySet())
+				for(Map.Entry<String,Tv> entry : SaxParserDataStore.tvs.entrySet())
 				{	
-				  if(entry.getValue().getRetailer().equals("Sony"))
+				  if(entry.getValue().getRetailer().equals("Samsung"))
 				 { 
 					hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}
 			}
-			else if(CategoryName.equals("nintendo"))
+			else if(CategoryName.equals("lg"))
 			{
-				for(Map.Entry<String,Console> entry : SaxParserDataStore.consoles.entrySet())
+				for(Map.Entry<String,Tv> entry : SaxParserDataStore.tvs.entrySet())
 				{
-				  if(entry.getValue().getRetailer().equals("Nintendo"))
+				  if(entry.getValue().getRetailer().equals("LG"))
 				 {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
@@ -73,10 +73,10 @@ public class AccessoryList extends HttpServlet {
 		pw.print("<a style='font-size: 24px;'>"+ CategoryName +": Accessories</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= 2;
-		for(Map.Entry<String, Console> entry : hm.entrySet())
+		for(Map.Entry<String, Tv> entry : hm.entrySet())
 		{
-			Console console = entry.getValue();
-			for(Map.Entry<String, String> acc:console.getAccessories().entrySet())
+			Tv tv = entry.getValue();
+			for(Map.Entry<String, String> acc:tv.getAccessories().entrySet())
 			{
 		        
 				Accessory accessory= SaxParserDataStore.accessories.get(acc.getValue());
@@ -90,17 +90,17 @@ public class AccessoryList extends HttpServlet {
 						"<input type='hidden' name='name' value='"+acc.getValue()+"'>"+
 						"<input type='hidden' name='type' value='accessories'>"+
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-						"<input type='hidden' name='access' value='"+console.getName()+"'>"+
+						"<input type='hidden' name='access' value='"+tv.getName()+"'>"+
 						"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 				pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+acc+"'>"+
 						"<input type='hidden' name='type' value='accessories'>"+
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-						"<input type='hidden' name='access' value='"+console.getName()+"'>"+
+						"<input type='hidden' name='access' value='"+tv.getName()+"'>"+
 						"<input type='submit' value='WriteReview' class='btnreview'></form></li>");
 				pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+acc+"'>"+
 						"<input type='hidden' name='type' value='accessories'>"+
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-						"<input type='hidden' name='access' value='"+console.getName()+"'>"+
+						"<input type='hidden' name='access' value='"+tv.getName()+"'>"+
 						"<input type='submit' value='ViewReview' class='btnreview'></form></li>");
 		
 				pw.print("</ul></div></td>");
