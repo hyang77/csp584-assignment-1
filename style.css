@@ -18,7 +18,7 @@ h2,
 h3 {
   margin: 0 !important;
   font-weight: normal !important;
-  color: #6666ff !important;
+  color: #000 !important;
 }
 
 h1 {
@@ -46,7 +46,7 @@ hr {
 
 /*Content of the Website*/
 #container {
-  width: 1200px;
+  width: 1300px;
   margin: 20px auto;
   padding: 10px;
   box-shadow: 0 5px 5px 5px #cccccc;
@@ -56,11 +56,11 @@ hr {
 /* Header Content of the Website*/
 
 #header {
-  width: 1000px;
+  width: 1200px;
   height: 70px;
   margin: 0 auto;
   padding: 0px;
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: #799ac0;
@@ -68,7 +68,7 @@ hr {
 
 /* Game Speed LOGO Decoration */
 #logo {
-  width: 1000px;
+  width: 1200px;
   height: 110px;
   margin: 0 auto;
   padding: 30px 20px 0px 20px;
@@ -81,7 +81,7 @@ hr {
   margin: 0px;
   line-height: normal;
   font-weight: normal;
-  color: #6a5acd;
+  color: #4076ab;
 }
 
 /* Game Speed LOGO Decoration with paragraph Tags */
@@ -89,7 +89,7 @@ hr {
 #logo p {
   margin-top: -4px;
   font-size: 13px;
-  color: #6a5acd;
+  color: #4076ab;
 }
 
 /* Game Speed LOGO Decoration with Heading Tags */
@@ -103,14 +103,14 @@ hr {
 
 #logo a {
   text-decoration: none;
-  color: #6a5acd;
+  color: #4076ab;
 }
 
 /* Game Speed LOGO Decoration with Heading and Hyperlink Tags */
 
 #logo h1 a {
   text-decoration: none;
-  color: #d7df01;
+  color: #2f557a;
 }
 
 /* menu display decoration */
@@ -129,16 +129,17 @@ hr {
 #menu ul li {
   float: left;
   padding: 0;
+  margin:0;
 }
 
 #menu ul li a {
   float: left;
   color: #eee;
   font-family: "Pontano Sans", Arial, sans-serif;
-  font-size: 13px;
+  font-size: 16px !important;
+  margin-top: 1.5px;
   letter-spacing: 0;
-  margin: 0;
-  padding: 12px 20px 0px 20px;
+  padding: 12px 20px 17px 20px;
   text-decoration: none;
   text-transform: uppercase;
   border-right: 1px solid #668cb7;
@@ -159,7 +160,7 @@ hr {
 /* Page Display Decoration*/
 
 #page {
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   padding: 20px 20px 0px 20px;
 }
@@ -168,12 +169,14 @@ hr {
 
 #content {
   float: right;
-  width: 750px;
+  width: 925px;
 }
 
 /* Products Display on the Main Content Screen */
 .post {
-  width: 750px;
+  width: 925px;
+  margin-left:auto;
+  margin-right: auto;
   margin-bottom: 20px;
   padding: 20px 0px;
   background: #ffffff;
@@ -265,8 +268,8 @@ hr {
 /* Left Navigation Bar - Sidebar */
 #sidebar {
   float: left;
-  width: 225px;
-  font-size: 12px;
+  width: 250px;
+  font-size: 16px !important;
 }
 
 /* Left Navigation Bar - Decoration for Unordered List */
@@ -282,11 +285,8 @@ hr {
 /* Left Navigation Bar - Decoration for List Items*/
 
 #sidebar li {
-  type: square;
   margin-bottom: 20px;
-  padding: 10px 0px 10px 0px;
-  border-radius: 5px;
-  background: #d7df01;
+  background: #bbbcbe;
 }
 
 /* Left Navigation Bar - Decoration for Consoles , Games , Tablets */
@@ -311,7 +311,6 @@ hr {
   padding: 0px 0px 0px 30px;
   font-weight: normal;
   border: none;
-  background: url(images/site/2.png) no-repeat 15px 4px;
 }
 
 #sidebar li li a.viewmore {
@@ -323,7 +322,7 @@ hr {
 /* Left Navigation Bar - Decoration for Hyperlink hover Tags ( Colour Changes) */
 
 #sidebar li li a:hover {
-  color: #666666;
+  color:#696969;
 }
 
 /* Left Navigation Bar - Decoration for Paragraph Tags */
@@ -339,12 +338,12 @@ hr {
 #sidebar h2 {
   height: 32px;
   margin: 0 0 10px 0px;
-  padding: 8px 0 10px 20px;
-  background: url(images/site/1.png) repeat-x left bottom;
-  font-size: 24px;
+  padding: 10px 0 10px 20px;
+  font-size: 20px !important;;
   font-weight: normal;
-  color: #000000;
+  color: #fff !important;
   font-size: 24px;
+  background-color: #d4424b;
 }
 
 /* Left Navigation Bar - Decoration for Heading Tags */
@@ -360,17 +359,17 @@ hr {
   text-align: left;
   text-decoration: none;
   font-weight: bold;
-  color: #000000;
+  color: #fff;
 }
 
 /* Footer Content for Game Speed */
 
 #footer {
-  width: 100%;
+  width: 1200px;
   height: 100px;
   margin: 0 auto;
   padding: 0;
-  background: #323232 url(images/site/img02.jpg) repeat-x left top;
+  background: #4076ab;
 }
 
 /* HTML Paragraph Element for Footer Content */
@@ -380,7 +379,7 @@ hr {
   padding: 30px 0px 0px 0px;
   text-align: center;
   line-height: normal;
-  font-size: 10px;
+  font-size: 14px;
   color: #c7dae5;
 }
 

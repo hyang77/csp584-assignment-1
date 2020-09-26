@@ -64,7 +64,7 @@ public class CheckOut extends HttpServlet {
 		pw.print("<tr><td>");
         pw.print("Total Order Cost</td><td>"+orderTotal);
 		pw.print("<input type='hidden' name='orderTotal' value='"+orderTotal+"'>");
-		pw.print("</td></tr></table><table><tr></tr><tr></tr>");	
+		pw.print("</td></tr></table><p>Customer Information: </p><table><tr></tr><tr></tr>");	
 		pw.print("<tr><td>");
      	pw.print("Credit/accountNo</td>");
 		pw.print("<td><input type='text' name='creditCardNo'>");
@@ -73,10 +73,23 @@ public class CheckOut extends HttpServlet {
 	    pw.print("Customer Address</td>");
 		pw.print("<td><input type='text' name='userAddress'>");
         pw.print("</td></tr>");
+		pw.print("<tr><td><input type='radio' name='pickup' value='pickup'> Store Pickup</input></td>");
+		pw.print("<td><input type='radio' name='delivery' value='delivery'> Home Delivery</input></td></tr>");
+		pw.print("</table><p>Choose Location: </p><table>");
+		pw.print("<tr><td><input type='radio' name='store1' value='store1'> 3320 South Cicero Avenue Cicero, IL 60804</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store2' value='store2'> 7050 S Cicero Ave Bedford Park, IL 60638</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store3' value='store3'> 1300 Des Plaines Ave Forest Park, IL 60130</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store4' value='store4'> 9450 Joliet Rd Hodgkins, IL 60525</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store5' value='store5'> 10260 S Harlem Ave Bridgeview, IL 60455</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store6' value='store6'> 4700 135th St Crestwood, IL 60418</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store7' value='store7'> 1100 5Th Ave Hammond, IN 46320</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store8' value='store8'> 6840 N McCormick Blvd Lincolnwood, IL 60712</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store9' value='store9'> 900 South Route 83 Villa Park, IL 60181</input></td></tr>");
+		pw.print("<tr><td><input type='radio' name='store10' value='store10'> 2189 75th St Darien, IL 60561</input></td></tr>");
 		pw.print("<tr><td colspan='2'>");
 		pw.print("<input type='submit' name='submit' class='btnbuy'>");
-        pw.print("</td></tr></table></form>");
-		pw.print("</div></div></div>");		
+        pw.print("</td></tr>");
+		pw.print("</table></form></div></div></div>");		
 		utility.printHtml("Footer.html");
 	    }
         catch(Exception e)
