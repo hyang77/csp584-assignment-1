@@ -14,15 +14,22 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 
 
 *********/
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 import  java.io.StringReader;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import javax.xml.parsers.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -260,9 +267,126 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
     // 	     Kick-Start SAX in main       //
     ////////////////////////////////////////
 	
-//call the constructor to parse the xml and get product details
- public static void addHashmap() {
+    //call the constructor to parse the xml and get product details
+    public static void addHashmap() {
 		String TOMCAT_HOME = System.getProperty("catalina.home");	
-		new SaxParserDataStore(TOMCAT_HOME+"\\webapps\\Assignment_1\\ProductCatalog.xml");
-    } 
+		new SaxParserDataStore(TOMCAT_HOME+"/webapps/Assignment_1/ProductCatalog.xml");
+    }
+
+    public static void save() {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder;
+        try {
+            builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            doc.setXmlStandalone(true);
+            Element root = doc.createElementNS("", "ProductCatalog");
+            doc.appendChild(root);
+
+            // TvCatalog
+            Element tvCatalog = doc.createElement("TvCatalog");
+            for (Map.Entry<String,Tv> entry : tvs.entrySet()) {
+                Element tvElement = doc.createElement("tv");
+                String id = entry.getKey();
+                Tv tv = entry.getValue();
+                tvElement.setAttribute("id", id);
+                tvElement.appendChild(createNodeWithText(doc, "name", tv.getName()));
+                tvElement.appendChild(createNodeWithText(doc, "price", String.valueOf(tv.getPrice())));
+                tvElement.appendChild(createNodeWithText(doc, "image", tv.getImage()));
+                tvElement.appendChild(createNodeWithText(doc, "manufacturer", tv.getRetailer()));
+                tvElement.appendChild(createNodeWithText(doc, "condition", tv.getCondition()));
+                tvElement.appendChild(createNodeWithText(doc, "discount", String.valueOf(tv.getDiscount())));
+
+                Element accessories = doc.createElement("accessories");
+                for (Map.Entry<String, String> accessory :  tv.getAccessories().entrySet()) {
+                    accessories.appendChild(createNodeWithText(doc, "accessory", accessory.getValue()));
+                }
+                tvElement.appendChild(accessories);
+                tvCatalog.appendChild(tvElement);
+            }
+
+            root.appendChild(tvCatalog);
+
+			// SoundSystemCatalog
+			
+			Element soundsystemCatalog = doc.createElement("SoundSystemCatalog");
+            for (Map.Entry<String,Tv> entry : soundsystems.entrySet()) {
+                Element soundsystemElement = doc.createElement("soundsystem");
+                String id = entry.getKey();
+                SoundSystem soundsystem = entry.getValue();
+                soundsystemElement.setAttribute("id", id);
+                soundsystemElement.appendChild(createNodeWithText(doc, "name", soundsystem.getName()));
+                soundsystemElement.appendChild(createNodeWithText(doc, "price", String.valueOf(soundsystem.getPrice())));
+                soundsystemElement.appendChild(createNodeWithText(doc, "image", soundsystem.getImage()));
+                soundsystemElement.appendChild(createNodeWithText(doc, "manufacturer", soundsystem.getRetailer()));
+                soundsystemElement.appendChild(createNodeWithText(doc, "condition", soundsystem.getCondition()));
+				soundsystemElement.appendChild(createNodeWithText(doc, "discount", String.valueOf(soundsystem.getDiscount())));
+				
+                SoundSystemCatalog.appendChild(soundsystemElement);
+            }
+
+            root.appendChild(SoundSystemCatalog);
+
+			//PhoneCatalog
+			
+			Element phoneCatalog = doc.createElement("PhoneCatalog");
+            for (Map.Entry<String,Tv> entry : phones.entrySet()) {
+                Element phoneElement = doc.createElement("phone");
+                String id = entry.getKey();
+                SoundSystem phone = entry.getValue();
+                phoneElement.setAttribute("id", id);
+                phoneElement.appendChild(createNodeWithText(doc, "name", phone.getName()));
+                phoneElement.appendChild(createNodeWithText(doc, "price", String.valueOf(phone.getPrice())));
+                phoneElement.appendChild(createNodeWithText(doc, "image", phone.getImage()));
+                phoneElement.appendChild(createNodeWithText(doc, "manufacturer", phone.getRetailer()));
+                phoneElement.appendChild(createNodeWithText(doc, "condition", phone.getCondition()));
+				phoneElement.appendChild(createNodeWithText(doc, "discount", String.valueOf(phone.getDiscount())));
+				
+                PhoneCatalog.appendChild(phoneElement);
+            }
+
+            root.appendChild(PhoneCatalog);
+
+			//AccessoryCatalog
+			Element accessoryCatalog = doc.createElement("AccessoryCatalog");
+            for (Map.Entry<String,Tv> entry : accessories.entrySet()) {
+                Element accessoryElement = doc.createElement("accessory");
+                String id = entry.getKey();
+                SoundSystem accessory = entry.getValue();
+                accessoryElement.setAttribute("id", id);
+                accessoryElement.appendChild(createNodeWithText(doc, "name", accessory.getName()));
+                accessoryElement.appendChild(createNodeWithText(doc, "price", String.valueOf(accessory.getPrice())));
+                accessoryElement.appendChild(createNodeWithText(doc, "image", accessory.getImage()));
+                accessoryElement.appendChild(createNodeWithText(doc, "manufacturer", accessory.getRetailer()));
+                accessoryElement.appendChild(createNodeWithText(doc, "condition", accessory.getCondition()));
+				accessoryElement.appendChild(createNodeWithText(doc, "discount", String.valueOf(accessory.getDiscount())));
+				
+                AccessoryCatalog.appendChild(accessoryElement);
+            }
+
+            root.appendChild(AccessoryCatalog);
+
+            // Save DOM XML to file
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            DOMSource source = new DOMSource(doc);
+            String TOMCAT_HOME = System.getProperty("catalina.home");
+            // Change to the same file name once completed
+            FileWriter writer = new FileWriter(new File(TOMCAT_HOME+"/webapps/Assignment_1/ProductCatalog2.xml"));
+            StreamResult result = new StreamResult(writer);
+            transformer.transform(source, result);
+
+            System.out.println("\nXML Saved Successfully..");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Element createNodeWithText(Document doc, String tag, String value) {
+        Element node = doc.createElement(tag);
+        node.appendChild(doc.createTextNode(value));
+        return node;
+    }
 }
