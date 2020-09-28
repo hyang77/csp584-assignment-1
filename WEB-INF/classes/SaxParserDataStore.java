@@ -310,7 +310,7 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 			// SoundSystemCatalog
 			
 			Element soundsystemCatalog = doc.createElement("SoundSystemCatalog");
-            for (Map.Entry<String,Tv> entry : soundsystems.entrySet()) {
+            for (Map.Entry<String,SoundSystem> entry : soundsystems.entrySet()) {
                 Element soundsystemElement = doc.createElement("soundsystem");
                 String id = entry.getKey();
                 SoundSystem soundsystem = entry.getValue();
@@ -322,18 +322,18 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
                 soundsystemElement.appendChild(createNodeWithText(doc, "condition", soundsystem.getCondition()));
 				soundsystemElement.appendChild(createNodeWithText(doc, "discount", String.valueOf(soundsystem.getDiscount())));
 				
-                SoundSystemCatalog.appendChild(soundsystemElement);
+                soundsystemCatalog.appendChild(soundsystemElement);
             }
 
-            root.appendChild(SoundSystemCatalog);
+            root.appendChild(soundsystemCatalog);
 
 			//PhoneCatalog
 			
 			Element phoneCatalog = doc.createElement("PhoneCatalog");
-            for (Map.Entry<String,Tv> entry : phones.entrySet()) {
+            for (Map.Entry<String,Phone> entry : phones.entrySet()) {
                 Element phoneElement = doc.createElement("phone");
                 String id = entry.getKey();
-                SoundSystem phone = entry.getValue();
+                Phone phone = entry.getValue();
                 phoneElement.setAttribute("id", id);
                 phoneElement.appendChild(createNodeWithText(doc, "name", phone.getName()));
                 phoneElement.appendChild(createNodeWithText(doc, "price", String.valueOf(phone.getPrice())));
@@ -342,17 +342,17 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
                 phoneElement.appendChild(createNodeWithText(doc, "condition", phone.getCondition()));
 				phoneElement.appendChild(createNodeWithText(doc, "discount", String.valueOf(phone.getDiscount())));
 				
-                PhoneCatalog.appendChild(phoneElement);
+                phoneCatalog.appendChild(phoneElement);
             }
 
-            root.appendChild(PhoneCatalog);
+            root.appendChild(phoneCatalog);
 
 			//AccessoryCatalog
 			Element accessoryCatalog = doc.createElement("AccessoryCatalog");
-            for (Map.Entry<String,Tv> entry : accessories.entrySet()) {
+            for (Map.Entry<String,Accessory> entry : accessories.entrySet()) {
                 Element accessoryElement = doc.createElement("accessory");
                 String id = entry.getKey();
-                SoundSystem accessory = entry.getValue();
+                Accessory accessory = entry.getValue();
                 accessoryElement.setAttribute("id", id);
                 accessoryElement.appendChild(createNodeWithText(doc, "name", accessory.getName()));
                 accessoryElement.appendChild(createNodeWithText(doc, "price", String.valueOf(accessory.getPrice())));
@@ -361,10 +361,10 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
                 accessoryElement.appendChild(createNodeWithText(doc, "condition", accessory.getCondition()));
 				accessoryElement.appendChild(createNodeWithText(doc, "discount", String.valueOf(accessory.getDiscount())));
 				
-                AccessoryCatalog.appendChild(accessoryElement);
+                accessoryCatalog.appendChild(accessoryElement);
             }
 
-            root.appendChild(AccessoryCatalog);
+            root.appendChild(accessoryCatalog);
 
             // Save DOM XML to file
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -373,7 +373,7 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
             DOMSource source = new DOMSource(doc);
             String TOMCAT_HOME = System.getProperty("catalina.home");
             // Change to the same file name once completed
-            FileWriter writer = new FileWriter(new File(TOMCAT_HOME+"/webapps/Assignment_1/ProductCatalog2.xml"));
+            FileWriter writer = new FileWriter(new File(TOMCAT_HOME+"/webapps/Assignment_1/ProductCatalog.xml"));
             StreamResult result = new StreamResult(writer);
             transformer.transform(source, result);
 
