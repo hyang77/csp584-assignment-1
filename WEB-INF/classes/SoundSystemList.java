@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/SoundSystemList")
 
@@ -73,11 +74,21 @@ public class SoundSystemList extends HttpServlet {
 		All the Games and Games information are dispalyed in the Content Section
 
 		and then Footer is Printed*/
+
+		HttpSession session = request.getSession(true);
+		String user_type = (String)session.getAttribute("usertype");
 		
 		Utilities utility = new Utilities(request,pw);
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
+
+		if(user_type.equals("retailer")){
+			pw.print("<div><a href='AddProduct'>Add</a></div>");
+			pw.print("<div><a href='UpdateProduct'>Update</a></div>");
+
+		}
+		
 		pw.print("<a style='font-size: 24px;'>"+name+" SoundSystem</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= hm.size();
@@ -103,7 +114,15 @@ public class SoundSystemList extends HttpServlet {
 					"<input type='hidden' name='type' value='soundsystems'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
-				    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
+					"<input type='submit' value='ViewReview' class='btnreview'></form></li>");
+					
+			if(user_type.equals("retailer")){
+				pw.print("<li><form method='post' action='RemoveProduct'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
+						"<input type='hidden' name='type' value='tvs'>"+
+						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
+						"<input type='hidden' name='access' value=''>"+
+						"<input type='submit' name='remove' value='Remove' class='btnreview'></form></li>");
+			}
 			pw.print("</ul></div></td>");
 			if(i%3==0 || i == size) pw.print("</tr>");
 			i++;

@@ -27,11 +27,23 @@ public class RemoveProduct extends HttpServlet {
         //get id from the selected product
 		System.out.print("name" + name);
 
-        SaxParserDataStore.tvs.remove(name);
-		SaxParserDataStore.save();
-
-        response.sendRedirect("TvList");
-
+        if(type.equals("tvs")) {
+            SaxParserDataStore.tvs.remove(name);
+            SaxParserDataStore.save();
+            response.sendRedirect("TvList");
+        } else if (type.equals("soundsystems")) {
+            SaxParserDataStore.soundsystems.remove(name);
+            SaxParserDataStore.save();
+            response.sendRedirect("SoundSystemList");
+        } else if (type.equals("phones")) {
+            SaxParserDataStore.phones.remove(name);
+            SaxParserDataStore.save();
+            response.sendRedirect("PhoneList");
+        } else {
+            SaxParserDataStore.accessories.remove(name);
+            SaxParserDataStore.save();
+            response.sendRedirect("AccessoryList");
+        }
 
     }
 }
