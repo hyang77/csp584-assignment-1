@@ -124,6 +124,8 @@ public class TvList extends HttpServlet {
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 						"<input type='hidden' name='access' value=''>"+
 						"<input type='submit' name='remove' value='Remove' class='btnreview'></form></li>");
+				pw.print("<li><a href='AddProduct?id="+tv.getId()+"&name="+tv.getName()+"&price="+tv.getPrice()+"&image="+tv.getImage()+"&manufacture="+tv.getRetailer()+"&condition="+tv.getCondition()+"&discount="+tv.getDiscount()+"'>Update</a></li>");
+
 			}
 
 			pw.print("</ul></div></td>");

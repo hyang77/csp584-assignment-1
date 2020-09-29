@@ -97,10 +97,85 @@ public class AddProduct extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String price = request.getParameter("price");
+		String category = request.getParameter("categorie");
+		String manufacture = request.getParameter("manufacture");
+		String discount = request.getParameter("discount");
+		
+		if(id == null) id = "";
+		if(name == null) name = "";
+		if(price == null) price = "";
+		if(category == null) category = "";
+		if(manufacture == null) manufacture = "";
+		if(discount == null) discount = "";
+
+		String tv_select = "";
+		String sound_select = "";
+		String phone_select = "";
+
+		if(category.equals("tv")){
+			tv_select = "selected";
+		}
+		else if(category.equals("soundsystem")){
+			sound_select = "selected";
+		}
+		else if(category.equals("phone")){
+			phone_select = "selected";
+		}
+
 		Utilities utility = new Utilities(request, pw);
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
-		utility.printHtml("AddProduct.html");
+		//utility.printHtml("AddProduct.html");
+		pw.print("<div id='content'><form method='post' action='AddProduct' class='form-horizontal'><fieldset><legend>Add PRODUCTS</legend>");
+		pw.print("<div class='form-group'>" +
+			    "<label class='col-md-4 control-label' for='product_id'>PRODUCT ID</label>" +
+			    "<div class='col-md-4'>" +
+				    "<input id='product_id' name='product_id' class='form-control input-md' required='' type='text' value='"+id+"'>" +
+			    "</div>" +
+			"</div>");
+		pw.print("<div class='form-group'>" +
+			    "<label class='col-md-4 control-label' for='product_name'>PRODUCT NAME</label>" +
+			    "<div class='col-md-4'>" +
+				    "<input id='product_name' name='product_name' class='form-control input-md' required='' type='text' value='"+name+"'>" +
+			    "</div>" +
+			"</div>");
+		pw.print("<div class='form-group'>" +
+			    "<label class='col-md-4 control-label' for='product_price'>PRODUCT PRICE</label>" +
+			    "<div class='col-md-4'>" +
+				    "<input id='product_price' name='product_price' class='form-control input-md' required='' type='text' value='"+price+"'>" +
+			    "</div>" +
+			"</div>");
+		pw.print("<div class='form-group'>" +
+			    "<label class='col-md-4 control-label' for='product_categorie'>PRODUCT CATEGORY</label>" +
+			    "<div class='col-md-4'>" +
+			    	"<select id='product_categorie' name='product_categorie' class='form-control'>" +
+				"<option value='tv' "+ tv_select +">tv</option>" +
+				"<option value='soundsystem' "+ sound_select +">soundsystem</option>" +
+				"<option value='phone' "+phone_select+">phone</option>" +
+				"</select>" +
+			    "</div>" +
+			"</div>");
+		pw.print("<div class='form-group'>" +
+			    "<label class='col-md-4 control-label' for='manufacture'>MANUFACTURE</label>" +
+			    "<div class='col-md-4'>" +
+				    "<input id='manufacture' name='manufacture' class='form-control input-md' required='' type='text' value='"+manufacture+"'>" +
+			    "</div>" +
+			"</div>");
+		pw.print("<div class='form-group'>" +
+			    "<label class='col-md-4 control-label' for='discount'>DISCOUNT</label>" +
+			    "<div class='col-md-4'>" +
+				    "<input id='discount' name='discount' class='form-control input-md' required='' type='text' value='"+discount+"'>" +
+			    "</div>" +
+			"</div>");
+		pw.print("<div class='form-group'>" +
+				"<div class='col-md-4'>" +
+					"<input type='submit' id='btnadd' name='btnadd' class='btn btn-primary'>" +
+				"</div>" +
+			"</div>");
+		pw.print("</fieldset></form></div>");
 		utility.printHtml("Footer.html");
 		
 	}
