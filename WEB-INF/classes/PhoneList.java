@@ -93,18 +93,19 @@ public class PhoneList extends HttpServlet {
 		int i = 1;
 		int size = hm.size();
 		for (Map.Entry<String, Phone> entry : hm.entrySet()) {
-			Phone Phone = entry.getValue();
+			Phone phone = entry.getValue();
 			if (i % 3 == 1)
 				pw.print("<tr>");
 			pw.print("<td><div id='shop_item'>");
-			pw.print("<h3>" + Phone.getName() + "</h3>");
-			pw.print("<strong>" + Phone.getPrice() + "$</strong><ul>");
+			pw.print("<h3>" + phone.getName() + "</h3>");
+			pw.print("<strong>" + phone.getPrice() + "$</strong><ul>");
 			pw.print("<li id='item'><img src='images/phones/"
-					+ Phone.getImage() + "' alt='' /></li>");
+					+ phone.getImage() + "' alt='' /></li>");
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 					"<input type='hidden' name='type' value='phones'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
+					"<input type='hidden' name='price' value='"+phone.getPrice()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
