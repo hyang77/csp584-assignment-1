@@ -41,12 +41,28 @@ public class ViewReview extends HttpServlet {
 			//select review info from database and store in the hashmap	 
 			HashMap<String, ArrayList<Review>> hm= MongoDBDataStoreUtilities.selectReview();
 			//declare vaiable for displaying in the table
-			String userName = "";
-			String reviewRating = "";
-			String reviewDate;
-			String reviewText = "";	
+			
+			String category = "";
 			String price = "";
+			String retailerpin = "";
+
+			String retailerstoreid = "";
 			String city ="";
+			String retailerstate = "";
+
+			String productonsale = "";
+			String manufacture = "";
+			String rebate = "";
+			
+			String userName = "";
+			String age = "";
+			String gender = "";
+			String occupation = "";
+
+			String reviewRating = "";
+			String reviewDate = "";
+			String reviewText = "";	
+
 			
             utility.printHtml("Header.html");
 			utility.printHtml("LeftNavigationBar.html");
@@ -67,41 +83,111 @@ public class ViewReview extends HttpServlet {
 				}else{
 					for (Review r : hm.get(productName)){		
 						pw.print("<table class='gridtable'>");
+
+						//name
 						pw.print("<tr>");
 						pw.print("<td> Product Name: </td>");
 						productName = r.getProductName();
 						pw.print("<td>" +productName+ "</td>");
 						pw.print("</tr>");
+						//category
 						pw.print("<tr>");
-						pw.print("<td> userName: </td>");
-						userName = r.getUserName();
-						pw.print("<td>" +userName+ "</td>");
+						pw.print("<td> Product Category: </td>");
+						category = r.getProductType();
+						pw.print("<td>" +category+ "</td>");
 						pw.print("</tr>");
+						//price
 						pw.print("<tr>");
-						pw.print("<td> price: </td>");
+						pw.print("<td> Product Price: </td>");
 						price = r.getPrice();
 						pw.print("<td>" +price+ "</td>");
 						pw.print("</tr>");
+						//store id
 						pw.print("<tr>");
-						pw.print("<td> Retailer City: </td>");
+						pw.print("<td> Store ID: </td>");
+						retailerstoreid = r.getStoreId();
+						pw.print("<td>" +retailerstoreid+ "</td>");
+						pw.print("</tr>");
+						//store zip
+						pw.print("<tr>");
+						pw.print("<td> Store Zip: </td>");
+						retailerpin = r.getRetailerPin();
+						pw.print("<td>" +retailerpin+ "</td>");
+						pw.print("</tr>");
+						//store city
+						pw.print("<tr>");
+						pw.print("<td> Store City: </td>");
 						city = r.getRetailerCity();
 						pw.print("<td>" +city+ "</td>");
 						pw.print("</tr>");
+						//store state
+						pw.print("<tr>");
+						pw.print("<td> Store State: </td>");
+						retailerstate = r.getState();
+						pw.print("<td>" +retailerstate+ "</td>");
+						pw.print("</tr>");
+						//product on sale
+						pw.print("<tr>");
+						pw.print("<td> Product On Sale: </td>");
+						productonsale = r.getProductOnSale();
+						pw.print("<td>" +productonsale+ "</td>");
+						pw.print("</tr>");
+						//manu name 
+						pw.print("<tr>");
+						pw.print("<td> Manufacturer Name: </td>");
+						manufacture = r.getProductMaker();
+						pw.print("<td>" +manufacture+ "</td>");
+						pw.print("</tr>");
+						//manu rebate
+						pw.print("<tr>");
+						pw.print("<td> Manufacturer Rebate: </td>");
+						rebate = r.getRebate();
+						pw.print("<td>" +rebate+ "</td>");
+						pw.print("</tr>");
+						//username
+						pw.print("<tr>");
+						pw.print("<td> User ID: </td>");
+						userName = r.getUserName();
+						pw.print("<td>" +userName+ "</td>");
+						pw.print("</tr>");
+						//age
+						pw.print("<tr>");
+						pw.print("<td> User Age: </td>");
+						age = r.getAge();
+						pw.print("<td>" +age+ "</td>");
+						pw.print("</tr>");
+						//gender
+						pw.print("<tr>");
+						pw.print("<td> User Gender: </td>");
+						gender = r.getGender();
+						pw.print("<td>" +gender+ "</td>");
+						pw.print("</tr>");
+						//occupation
+						pw.print("<tr>");
+						pw.print("<td> User Occupation: </td>");
+						occupation = r.getOccupation();
+						pw.print("<td>" +occupation+ "</td>");
+						pw.print("</tr>");
+						//rating
 						pw.println("<tr>");
 						pw.println("<td> Review Rating: </td>");
 						reviewRating = r.getReviewRating().toString();
 						pw.print("<td>" +reviewRating+ "</td>");
 						pw.print("</tr>");
+						//date
 						pw.print("<tr>");
 						pw.print("<td> Review Date: </td>");
 						reviewDate = r.getReviewDate().toString();
 						pw.print("<td>" +reviewDate+ "</td>");
-						pw.print("</tr>");			
+						pw.print("</tr>");	
+						//text
 						pw.print("<tr>");
 						pw.print("<td> Review Text: </td>");
 						reviewText = r.getReviewText();
 						pw.print("<td>" +reviewText+ "</td>");
 						pw.print("</tr>");
+						
+
 						pw.println("</table>");
 					}					
 							

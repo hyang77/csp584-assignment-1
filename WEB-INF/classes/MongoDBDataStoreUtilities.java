@@ -21,7 +21,7 @@ return myReviews;
 }
 
 
-public static String insertReview(String productname,String username,String producttype,String productmaker,String reviewrating,String reviewdate,String reviewtext,String retailerpin,String price,String retailercity)
+public static String insertReview(String productname,String username,String producttype,String productmaker,String reviewrating,String reviewdate,String reviewtext,String retailerpin,String price,String retailercity,String age, String gender, String occupation, String retailerstoreid, String rebate, String productonsale, String retailerstate)
 {
 	try
 		{		
@@ -36,7 +36,15 @@ public static String insertReview(String productname,String username,String prod
 				append("reviewText", reviewtext).
 				append("retailerpin", retailerpin).
 				append("retailercity", retailercity).
-				append("price",(int) Double.parseDouble(price));
+				append("price",(int) Double.parseDouble(price)).
+				//newly added fields
+				append("age", Integer.parseInt(age)).
+				append("gender", gender).
+				append("occupation", occupation).
+				append("retailerstoreid", retailerstoreid).
+				append("rebate", rebate).
+				append("productonsale", productonsale).
+				append("retailerstate", retailerstate);
 			myReviews.insert(doc);
 			return "Successfull";
 		}
@@ -68,7 +76,7 @@ public static HashMap<String, ArrayList<Review>> selectReview()
 			}
 			ArrayList<Review> listReview = reviews.get(obj.getString("productName"));		
 			Review review =new Review(obj.getString("productName"),obj.getString("userName"),obj.getString("productType"),obj.getString("productMaker"),
-				obj.getString("reviewRating"),obj.getString("reviewDate"),obj.getString("reviewText"),obj.getString("retailerpin"),obj.getString("price"),obj.getString("retailercity"));
+				obj.getString("reviewRating"),obj.getString("reviewDate"),obj.getString("reviewText"),obj.getString("retailerpin"),obj.getString("price"),obj.getString("retailercity"),obj.getString("age"),obj.getString("gender"),obj.getString("occupation"),obj.getString("retailerstoreid"),obj.getString("rebate"),obj.getString("productonsale"),obj.getString("retailerstate"));
 			//add to review hashmap
 			listReview.add(review);
 		
@@ -97,7 +105,7 @@ public static HashMap<String, ArrayList<Review>> selectReview()
 // 	  while(cursor.hasNext()) {
 // 		  BasicDBObject obj = (BasicDBObject) cursor.next();
 		  		  		   
-// 		  String prodcutnm = obj.get("productName").toString();
+// 		  String prodcutnm = obj.get("productName").();
 // 		  String rating = obj.get("reviewRating").toString();
 // 	      Bestrating best = new Bestrating(prodcutnm,rating);
 // 		  Bestrate.add(best);

@@ -39,8 +39,17 @@ public class SubmitReview extends HttpServlet {
 			String reviewtext=request.getParameter("reviewtext");
 			String retailerpin=request.getParameter("zipcode");
 			String retailercity = request.getParameter("retailercity");
+			//newly added input
+			String age = request.getParameter("age");
+			String gender = request.getParameter("gender");
+			String occupation = request.getParameter("occupation");
+			String retailerstoreid = request.getParameter("storeid");
+			String rebate = request.getParameter("rebate");
+			String productonsale = request.getParameter("productonsale");
+			String retailerstate = request.getParameter("state");
 			//store review in the database
-			String message=utility.storeReview(productname,producttype,productmaker,reviewrating,reviewdate,reviewtext,retailerpin,productprice,retailercity);				     
+			String message=utility.storeReview(productname, producttype, productmaker, reviewrating, reviewdate,reviewtext, retailerpin, productprice, retailercity, age, gender, occupation, retailerstoreid, rebate, productonsale, retailerstate);
+							     
        		//print layout
 			utility.printHtml("Header.html");
 			utility.printHtml("LeftNavigationBar.html");

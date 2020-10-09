@@ -78,6 +78,23 @@ public class WriteReview extends HttpServlet {
 			pw.print("<option value='5'>5</option>");  
 			pw.print("</td></tr>");
 
+			//add store name
+			pw.print("<tr><td> Store ID: </td>");
+			pw.print("<td>");
+			pw.print("<select name='storeid'>");
+			pw.print("<option value='South Cicero' selected>South Cicero</option>");
+			pw.print("<option value='Forest Park'>Forest Park</option>");
+			pw.print("<option value='Joliet Rd'>Joliet Rd</option>");
+			pw.print("<option value='Bridgeview'>Bridgeview</option>");
+			pw.print("<option value='Crestwood'>Crestwood</option>");
+			pw.print("<option value='Hammond'>Hammond</option>");
+			pw.print("<option value='Lincolnwood'>Lincolnwood</option>");
+			pw.print("<option value='Villa Park'>Villa Park</option>");
+			pw.print("<option value='Darien'>Darien</option>");
+			pw.print("<option value='Bedford Park'>Bedford Park</option>");      
+			pw.print("</td></tr>");
+
+
 			pw.print("<tr>");
 			pw.print("<td> Retailer Zip Code: </td>");
 			pw.print("<td> <input type='text' name='zipcode'> </td>");
@@ -87,6 +104,49 @@ public class WriteReview extends HttpServlet {
 			pw.print("<td> Retailer City: </td>");
 			pw.print("<td> <input type='text' name='retailercity'> </td>");
 			pw.print("</tr>");
+
+			//state
+			pw.print("<tr>");
+			pw.print("<td> Retailer State: </td>");
+			pw.print("<td> <input type='text' name='state'> </td>");
+			pw.print("</tr>");
+
+			//ProductOnSale
+			pw.print("<tr><td> Product On Sale: </td>");
+			pw.print("<td>");
+			pw.print("<select name='productonsale'>");
+			pw.print("<option value='yes' selected>YES</option>");
+			pw.print("<option value='no'>NO</option>");   
+			pw.print("</td></tr>");
+
+			//ManufacturerRebate
+			pw.print("<tr><td> Manufacturer Rebate: </td>");
+			pw.print("<td>");
+			pw.print("<select name='rebate'>");
+			pw.print("<option value='yes' selected>YES</option>");
+			pw.print("<option value='no'>NO</option>");   
+			pw.print("</td></tr>");
+
+			//age
+			pw.print("<tr>");
+			pw.print("<td> Age: </td>");
+			pw.print("<td> <input type='text' name='age'> </td>");
+			pw.print("</tr>");
+			
+			//gender
+			pw.print("<tr><td> Gender: </td>");
+			pw.print("<td>");
+			pw.print("<select name='gender'>");
+			pw.print("<option value='female' selected>Female</option>");
+			pw.print("<option value='male'>Male</option>");   
+			pw.print("</td></tr>");
+
+			//Occupation
+			pw.print("<tr>");
+			pw.print("<td> Occupation: </td>");
+			pw.print("<td> <input type='text' name='occupation'> </td>");
+			pw.print("</tr>");
+
 
 			pw.print("<tr>");
 			pw.print("<td> Review Date: </td>");

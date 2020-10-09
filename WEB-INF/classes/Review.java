@@ -21,8 +21,16 @@ public class Review implements Serializable{
 	private String retailerpin;
 	private String price;
 	private String retailercity;
+	//newly added
+	private String age;
+	private String gender;
+	private String occupation;
+	private String retailerstoreid;
+	private String rebate;
+	private String productonsale;
+	private String retailerstate;
 	
-	public Review (String productName,String userName,String productType,String productMaker,String reviewRating,String reviewDate,String reviewText,String retailerpin,String price,String retailercity){
+	public Review (String productName,String userName,String productType,String productMaker,String reviewRating,String reviewDate,String reviewText,String retailerpin,String price,String retailercity,String age, String gender, String occupation, String retailerstoreid, String rebate, String productonsale, String retailerstate){
 		this.productName=productName;
 		this.userName=userName;
 		this.productType=productType;
@@ -33,14 +41,76 @@ public class Review implements Serializable{
 		this.retailerpin=retailerpin;
 		this.price= price;
 		this.retailercity= retailercity;
+		//newly added
+		this.age = age;
+		this.gender = gender;
+		this.occupation = occupation;
+		this.retailerstoreid = retailerstoreid;
+		this.rebate = rebate;
+		this.productonsale = productonsale;
+		this.retailerstate = retailerstate;
+	}
+	//age
+	public void setAge(String age) {
+		this.age = age;
 	}
 
-	public Review(String productName, String retailerpin, String reviewRating, String reviewText) {
-       this.productName = productName;
-       this.retailerpin = retailerpin;
-       this.reviewRating = reviewRating;
-       this.reviewText = reviewText;
-    }
+	public String getAge() {
+		return age;
+	}
+	//gender
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+	//occupation
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	//store id
+	public void setStoreId(String retailerstoreid) {
+		this.retailerstoreid = retailerstoreid;
+	}
+
+	public String getStoreId() {
+		return retailerstoreid;
+	}
+	//rebate
+	public void setRebate(String rebate) {
+		this.rebate = rebate;
+	}
+
+	public String getRebate() {
+		return rebate;
+	}
+	//productonsale
+	public void setProductOnSale(String productonsale) {
+		this.productonsale = productonsale;
+	}
+
+	public String getProductOnSale() {
+		return productonsale;
+	}
+
+	//state
+	public void setState(String retailerstate) {
+		this.retailerstate = retailerstate;
+	}
+
+	public String getState() {
+		return retailerstate;
+	}
+
+
+
 
 	public String getProductName() {
 		return productName;
