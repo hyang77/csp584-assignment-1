@@ -1,13 +1,11 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.sql.*;
 
 @WebServlet("/CheckOut")
@@ -41,7 +39,8 @@ public class CheckOut extends HttpServlet {
 		//get the order product details	on clicking submit the form will be passed to submitorder page	
 		
 	    String userName = session.getAttribute("username").toString();
-        String orderTotal = request.getParameter("orderTotal");
+		String orderTotal = request.getParameter("orderTotal");
+		
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<form name ='CheckOut' action='Payment' method='post'>");
@@ -62,17 +61,22 @@ public class CheckOut extends HttpServlet {
 			pw.print("</td></tr>");
 		}
 		pw.print("<tr><td>");
+
         pw.print("Total Order Cost</td><td>"+orderTotal);
 		pw.print("<input type='hidden' name='orderTotal' value='"+orderTotal+"'>");
-		pw.print("</td></tr></table><p>Customer Information: </p><table><tr></tr><tr></tr>");	
+
+		pw.print("</td></tr></table><p>Customer Information: </p><table><tr></tr><tr></tr>");
+		//credit num
 		pw.print("<tr><td>");
      	pw.print("Credit/accountNo</td>");
 		pw.print("<td><input type='text' name='creditCardNo'>");
 		pw.print("</td></tr>");
+		//address
 		pw.print("<tr><td>");
 	    pw.print("Customer Address</td>");
 		pw.print("<td><input type='text' name='userAddress'>");
-        pw.print("</td></tr>");
+		pw.print("</td></tr>");
+		
 		pw.print("<tr><td><input type='radio' name='pickup' value='pickup'> Store Pickup</input></td>");
 		pw.print("<td><input type='radio' name='delivery' value='delivery'> Home Delivery</input></td></tr>");
 		pw.print("</table><p>Choose Location: </p><table>");
@@ -88,7 +92,8 @@ public class CheckOut extends HttpServlet {
 		pw.print("<tr><td><input type='radio' name='store10' value='store10'> 2189 75th St Darien, IL 60561</input></td></tr>");
 		pw.print("<tr><td colspan='2'>");
 		pw.print("<input type='submit' name='submit' class='btnbuy'>");
-        pw.print("</td></tr>");
+		pw.print("</td></tr>");
+		
 		pw.print("</table></form></div></div></div>");		
 		utility.printHtml("Footer.html");
 	    }

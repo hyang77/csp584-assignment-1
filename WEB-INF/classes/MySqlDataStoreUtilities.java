@@ -4,18 +4,26 @@ import java.util.*;
 public class MySqlDataStoreUtilities
 {
 static Connection conn = null;
-
-public static void getConnection()
+static String message;
+public static String getConnection()
 {
 
 	try
 	{
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
-	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BestDealDatabase","root","1234");							
+	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bestdealdatabase","root","1234");							
+	message="Successfull";
+	return message;
+	}
+	catch(SQLException e)
+	{
+		message="unsuccessful";
+		     return message;
 	}
 	catch(Exception e)
 	{
-	
+		message=e.getMessage();
+		return message;
 	}
 }
 

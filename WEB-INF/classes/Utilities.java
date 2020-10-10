@@ -166,23 +166,21 @@ public class Utilities extends HttpServlet{
 	/*  getOrdersPaymentSize Function gets  the size of OrderPayment */
 	public int getOrderPaymentSize(){
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
-		String TOMCAT_HOME = System.getProperty("catalina.home");
-			try
-			{
-				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Tutorial_1\\PaymentDetails.txt"));
-				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-				orderPayments = (HashMap)objectInputStream.readObject();
-			}
-			catch(Exception e)
-			{
+		int size=0;
+		try
+		{
+			orderPayments =MySqlDataStoreUtilities.selectOrder();
+				
+		}
+		catch(Exception e)
+		{
 			
-			}
-			int size=0;
-			for(Map.Entry<Integer, ArrayList<OrderPayment>> entry : orderPayments.entrySet()){
-					 size=size + 1;
-					 
-			}
-			return size;		
+		}
+		for(Map.Entry<Integer, ArrayList<OrderPayment>> entry : orderPayments.entrySet()){
+				size=entry.getKey();
+		}
+			
+		return size;		
 	}
 
 	/*  CartCount Function gets  the size of User Orders*/
@@ -225,53 +223,50 @@ public class Utilities extends HttpServlet{
 		}
 		
 	}
+
 	// store the payment details for orders
 	public void storePayment(int orderId,
-		String orderName,double orderPrice,String userAddress,String creditCardNo){
+		String orderName,double orderPrice,String userAddress,String creditCardNo,String customer){
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments= new HashMap<Integer, ArrayList<OrderPayment>>();
-		String TOMCAT_HOME = System.getProperty("catalina.home");
 			// get the payment details file 
-			try
-			{
-				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Tutorial_1\\PaymentDetails.txt"));
-				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-				orderPayments = (HashMap)objectInputStream.readObject();
-			}
-			catch(Exception e)
-			{
+		try
+		{
+			orderPayments=MySqlDataStoreUtilities.selectOrder();
+		}
+		catch(Exception e)
+		{
 			
-			}
-			if(orderPayments==null)
-			{
-				orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
-			}
+		}
+		if(orderPayments==null)
+		{
+			orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
+		}
 			// if there exist order id already add it into same list for order id or create a new record with order id
 			
-			if(!orderPayments.containsKey(orderId)){	
-				ArrayList<OrderPayment> arr = new ArrayList<OrderPayment>();
-				orderPayments.put(orderId, arr);
-			}
+		if(!orderPayments.containsKey(orderId)){	
+			ArrayList<OrderPayment> arr = new ArrayList<OrderPayment>();
+			orderPayments.put(orderId, arr);
+		}
 		ArrayList<OrderPayment> listOrderPayment = orderPayments.get(orderId);		
+		
 		OrderPayment orderpayment = new OrderPayment(orderId,username(),orderName,orderPrice,userAddress,creditCardNo);
 		listOrderPayment.add(orderpayment);	
 			
-			// add order details into file
-
-			try
-			{	
-				FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\Tutorial_1\\PaymentDetails.txt"));
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            	objectOutputStream.writeObject(orderPayments);
-				objectOutputStream.flush();
-				objectOutputStream.close();       
-				fileOutputStream.close();
-			}
-			catch(Exception e)
+			// add order details into database
+		try
+		{	if(session.getAttribute("usertype").equals("retailer"))
 			{
-				System.out.println("inside exception file not written properly");
-			}	
+				MySqlDataStoreUtilities.insertOrder(orderId,customer,orderName,orderPrice,userAddress,creditCardNo);
+			}else
+				
+				{MySqlDataStoreUtilities.insertOrder(orderId,username(),orderName,orderPrice,userAddress,creditCardNo);}
+		}
+		catch(Exception e)
+		{
+			System.out.println("inside exception file not written properly");
+		}	
 	}
-
+	
 	public String storeReview(String productname,String producttype,String productmaker,String reviewrating,String reviewdate,String  reviewtext,String reatilerpin,String price,String city, String age, String gender, String occupation, String retailerstoreid, String rebate, String productonsale, String retailerstate){
 		String message=MongoDBDataStoreUtilities.insertReview(productname,username(),producttype,productmaker,reviewrating,reviewdate,reviewtext,reatilerpin,price,city,age,gender,occupation,retailerstoreid,rebate,productonsale,retailerstate);
 			if(!message.equals("Successfull"))
