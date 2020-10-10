@@ -35,7 +35,7 @@ public class Trending extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>Best Products</a>");
+		pw.print("<a style='font-size: 24px;'>Top 5 Products based on review rating</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		Iterator itr2 = bestrated.iterator();
         while(itr2.hasNext()) {
@@ -52,7 +52,7 @@ public class Trending extends HttpServlet {
 		pw.print("</table></div></div></div>");	
 		
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>Most Sold Products by Zipcode</a>");
+		pw.print("<a style='font-size: 24px;'>Top 5 Zip code based on maximum numbers of products reviewed</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		Iterator itr1 = mostsoldzip.iterator();
          while(itr1.hasNext()) {
@@ -70,7 +70,7 @@ public class Trending extends HttpServlet {
 		pw.print("</table></div></div></div>");	
 		
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>Most Sold Products</a>");
+		pw.print("<a style='font-size: 24px;'>Top 5 Products based on reviews count</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		
          Iterator itr = mostsold.iterator();

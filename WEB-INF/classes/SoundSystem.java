@@ -24,8 +24,7 @@ public class SoundSystem extends HttpServlet{
 	private String condition;
 	private double discount;
 	
-	public SoundSystem(String id,String name, double price, String image, String retailer,String condition,double discount){
-		this.id=id;
+	public SoundSystem(String name, double price, String image, String retailer,String condition,double discount){
 		this.name=name;
 		this.price=price;
 		this.image=image;
