@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
+import java.io.*; 
+import java.time.LocalDateTime;   
+import java.util.Calendar;
 
 @WebServlet("/Utilities")
 
@@ -252,14 +254,28 @@ public class Utilities extends HttpServlet{
 		OrderPayment orderpayment = new OrderPayment(orderId,username(),orderName,orderPrice,userAddress,creditCardNo);
 		listOrderPayment.add(orderpayment);	
 			
+		Date purchaseDate = new Date(Calendar.getInstance().getTimeInMillis());
+		Date shipDate = new Date();
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(shipDate); 
+		c.add(Calendar.DATE, 7);
+		shipDate = c.getTime();
+		int quantity = 1;
+		String category = "";
+		double shippingCost = 9.99;
+		double discount = 0;
+		double totalSales = orderPrice * quantity;
+		String storeId = "";
+		String storeAddress = "";
+
 			// add order details into database
 		try
 		{	if(session.getAttribute("usertype").equals("retailer"))
 			{
-				MySqlDataStoreUtilities.insertOrder(orderId,customer,orderName,orderPrice,userAddress,creditCardNo);
-			}else
-				
-				{MySqlDataStoreUtilities.insertOrder(orderId,username(),orderName,orderPrice,userAddress,creditCardNo);}
+				MySqlDataStoreUtilities.insertOrder(orderId, customer, orderPrice, userAddress, creditCardNo, purchaseDate, shipDate, orderName, category, quantity, shippingCost, discount, totalSales, storeId, storeAddress);
+			}else{
+				MySqlDataStoreUtilities.insertOrder(orderId, username(), orderPrice, userAddress, creditCardNo, purchaseDate, shipDate, orderName, category, quantity, shippingCost, discount, totalSales, storeId, storeAddress);
+			}
 		}
 		catch(Exception e)
 		{

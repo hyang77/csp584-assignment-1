@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
                 	
 public class MySqlDataStoreUtilities
 {
@@ -46,23 +47,36 @@ public static void deleteOrder(int orderId,String orderName)
 	}
 }
 
-public static void insertOrder(int orderId,String userName,String orderName,double orderPrice,String userAddress,String creditCardNo)
+public static void insertOrder(int orderId,String userName,double price,String userAddress,String creditCardNo, Date purchaseDate, Date shipDate, String productId, String category, int quantity, double shippingCost, double discount, double totalSales, String storeId, String storeAddress)
+//MySqlDataStoreUtilities.insertOrder(orderId, username(), orderName, orderPrice, userAddress, creditCardNo, purchaseDate, shipDate, quantity, category, shippingCost, discount, totalSales, storeId, storeAddress);
 {
 	try
 	{
 	
 		getConnection();
-		String insertIntoCustomerOrderQuery = "INSERT INTO customerOrders(OrderId,UserName,OrderName,OrderPrice,userAddress,creditCardNo) "
-		+ "VALUES (?,?,?,?,?,?);";	
+		String insertIntoCustomerOrderQuery = "INSERT INTO customerOrders(orderId,userName,price,userAddress,creditCardNo,purchaseDate,shipDate,productId,category,quantity,shippingCost,discount,totalSales,storeId,storeAddress)"
+		+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";	
 			
 		PreparedStatement pst = conn.prepareStatement(insertIntoCustomerOrderQuery);
 		//set the parameter for each column and execute the prepared statement
 		pst.setInt(1,orderId);
 		pst.setString(2,userName);
-		pst.setString(3,orderName);
-		pst.setDouble(4,orderPrice);
-		pst.setString(5,userAddress);
-		pst.setString(6,creditCardNo);
+		pst.setDouble(3,price);
+		pst.setString(4,userAddress);
+		pst.setString(5,creditCardNo);
+		java.sql.Date pd = new java.sql.Date(purchaseDate.getTime());
+		pst.setDate(6,pd);
+		java.sql.Date sd = new java.sql.Date(shipDate.getTime());
+		pst.setDate(7,sd);
+		pst.setString(8,productId);
+		pst.setString(9,category);
+		pst.setInt(10,quantity);
+		pst.setDouble(11,shippingCost);
+		pst.setDouble(12,discount);
+		pst.setDouble(13,totalSales);
+		pst.setString(14,storeId);
+		pst.setString(15,storeAddress);
+
 		pst.execute();
 	}
 	catch(Exception e)

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
+import java.util.Date;
 
 @WebServlet("/CheckOut")
 
@@ -17,7 +18,7 @@ public class CheckOut extends HttpServlet {
 		
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-	        Utilities Utility = new Utilities(request, pw);
+	    Utilities Utility = new Utilities(request, pw);
 		storeOrders(request, response);
 	}
 	
@@ -37,7 +38,6 @@ public class CheckOut extends HttpServlet {
         HttpSession session=request.getSession(); 
 
 		//get the order product details	on clicking submit the form will be passed to submitorder page	
-		
 	    String userName = session.getAttribute("username").toString();
 		String orderTotal = request.getParameter("orderTotal");
 		
@@ -55,7 +55,7 @@ public class CheckOut extends HttpServlet {
 		{
 			pw.print("<tr><td> Product Purchased:</td><td>");
 			pw.print(oi.getName()+"</td></tr><tr><td>");
-			pw.print("<input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'>");
+			pw.print("<input type='' name='orderPrice' value='"+oi.getPrice()+"'>");
 			pw.print("<input type='hidden' name='orderName' value='"+oi.getName()+"'>");
 			pw.print("Product Price:</td><td>"+ oi.getPrice());
 			pw.print("</td></tr>");
@@ -66,30 +66,58 @@ public class CheckOut extends HttpServlet {
 		pw.print("<input type='hidden' name='orderTotal' value='"+orderTotal+"'>");
 
 		pw.print("</td></tr></table><p>Customer Information: </p><table><tr></tr><tr></tr>");
+
 		//credit num
 		pw.print("<tr><td>");
      	pw.print("Credit/accountNo</td>");
 		pw.print("<td><input type='text' name='creditCardNo'>");
 		pw.print("</td></tr>");
+
 		//address
 		pw.print("<tr><td>");
 	    pw.print("Customer Address</td>");
 		pw.print("<td><input type='text' name='userAddress'>");
 		pw.print("</td></tr>");
+
+		//delivery option
+		pw.print("<tr><td> Delivery Option: </td>");
+		pw.print("<td>");
+		pw.print("<select name='delivery'>");
+		pw.print("<option value='homedelivery' selected>Home Delivery</option>");
+		pw.print("<option value='storepickup'>Store Pickup</option>");   
+		pw.print("</td></tr>");
+
+		//store id
+		pw.print("<tr><td> Store: </td>");
+		pw.print("<td>");
+		pw.print("<select name='storeid'>");
+		pw.print("<option value='South Cicero' selected>South Cicero</option>");
+		pw.print("<option value='Forest Park'>Forest Park</option>");
+		pw.print("<option value='Joliet Rd'>Joliet Rd</option>");
+		pw.print("<option value='Bridgeview'>Bridgeview</option>");
+		pw.print("<option value='Crestwood'>Crestwood</option>");
+		pw.print("<option value='Hammond'>Hammond</option>");
+		pw.print("<option value='Lincolnwood'>Lincolnwood</option>");
+		pw.print("<option value='Villa Park'>Villa Park</option>");
+		pw.print("<option value='Darien'>Darien</option>");
+		pw.print("<option value='Bedford Park'>Bedford Park</option>");      
+		pw.print("</td></tr>");
+
+		//purchaseDate
+		Date date = new Date();
+		pw.print("<input type='hidden' name='purchaseDate' value="+date.toString()+">");
+		//shipDate
+		pw.print("<input type='hidden' name='shipDate' value=''>");
+		//product ID
+		//category
+		//quantity
+		//discount
+		//total sale
+
+
 		
-		pw.print("<tr><td><input type='radio' name='pickup' value='pickup'> Store Pickup</input></td>");
-		pw.print("<td><input type='radio' name='delivery' value='delivery'> Home Delivery</input></td></tr>");
-		pw.print("</table><p>Choose Location: </p><table>");
-		pw.print("<tr><td><input type='radio' name='store1' value='store1'> 3320 South Cicero Avenue Cicero, IL 60804</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store2' value='store2'> 7050 S Cicero Ave Bedford Park, IL 60638</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store3' value='store3'> 1300 Des Plaines Ave Forest Park, IL 60130</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store4' value='store4'> 9450 Joliet Rd Hodgkins, IL 60525</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store5' value='store5'> 10260 S Harlem Ave Bridgeview, IL 60455</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store6' value='store6'> 4700 135th St Crestwood, IL 60418</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store7' value='store7'> 1100 5Th Ave Hammond, IN 46320</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store8' value='store8'> 6840 N McCormick Blvd Lincolnwood, IL 60712</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store9' value='store9'> 900 South Route 83 Villa Park, IL 60181</input></td></tr>");
-		pw.print("<tr><td><input type='radio' name='store10' value='store10'> 2189 75th St Darien, IL 60561</input></td></tr>");
+
+
 		pw.print("<tr><td colspan='2'>");
 		pw.print("<input type='submit' name='submit' class='btnbuy'>");
 		pw.print("</td></tr>");
