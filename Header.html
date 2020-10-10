@@ -45,92 +45,95 @@
       padding: 0 !important;
       background: #e6e7e9 !important;
       font-family: 'Pontano Sans', Arial, Helvetica, sans-serif;
-	  font-size: 16px !important;
-	  color: #888 !important;
+      font-size: 16px !important;
+      color: #888 !important;
     "
   >
-  <div id="container">
-    <script type="text/javascript" src="autocomplete.js"></script>
-    <!-- Start #logo top content of the webpage-->
-    <div id="logo">
-      <table style="float: left">
-        <tr>
-          <td style="valign: top">
-          </td>
-          <td>
-            <h1>
-              <a href="#">Best Deal</a>
-            </h1>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <p>
-              <em>Shop Today's Best Online Deal!</em>
-            </p>
-          </td>
-        </tr>
-      </table>
-      <div
-        style="
-          float: right;
-          width: 30%;
-          margin-top: 35px;
-          border: 1px solid white;
-          padding: 5px;
-          padding-right: 15px;
-        "
-      >
-        <em style="color: grey">Search Product:</em>
-        <div name="autofillform">
-          <input
-            type="text"
-            name="complete-field"
-            value=""
-            class="input"
-            id="complete-field"
-            onkeyup="doCompletion()"
-            autocomplete="off"
-            placeholder="search here.."
-            style="padding: 5px; font-size: 16px"
-          />
-          <div id="auto-row">
-            <table
-              id="complete-table"
-              class="gridtable"
-              style="position: absolute; width: 315px"
-            ></table>
+    <div id="container">
+      <script type="text/javascript" src="autocomplete.js"></script>
+      <!-- Start #logo top content of the webpage-->
+      <div id="logo">
+        <table style="float: left">
+          <tr>
+            <td style="valign: top"></td>
+            <td>
+              <h1>
+                <a href="#">Best Deal</a>
+              </h1>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <p>
+                <em>Shop Today's Best Online Deal!</em>
+              </p>
+            </td>
+          </tr>
+        </table>
+        <div
+          style="
+            float: right;
+            width: 30%;
+            margin-top: 35px;
+            border: 1px solid white;
+            padding: 5px;
+            padding-right: 15px;
+          "
+        >
+          <em style="color: grey">Search Product:</em>
+          <div name="autofillform">
+            <input
+              type="text"
+              name="complete-field"
+              value=""
+              class="input"
+              id="complete-field"
+              onkeyup="doCompletion()"
+              autocomplete="off"
+              placeholder="search here.."
+              style="padding: 5px; font-size: 16px"
+            />
+            <div id="auto-row">
+              <table
+                id="complete-table"
+                class="gridtable"
+                style="position: absolute; width: 315px"
+              ></table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <hr />
-    <!-- end #logo -->
-    <!-- start #header -->
-    <!-- menu in header area the header div ends in utility file where header content right side link gets populated with login id cart and logout option -->
-    <div id="header">
-      <div id="menu">
-        <ul>
-          <li>
-            <a href="Home" class="first"
-              ><span class="glyphicon glyphicon-home">Home</span></a
-            >
-          </li>
-          <li>
-            <a href="TvList"><span class="glyphicon">Tvs</span></a>
-          </li>
-          <li>
-            <a href="SoundSystemList"
-              ><span class="glyphicon">SoundSystems</span></a
-            >
-          </li>
-          <li>
-            <a href="PhoneList"><span class="glyphicon">Phones</span></a>
-          </li>
-          <!-- <li>
-            <a href="Trending"><span class="glyphicon">Trending</span></a>
-          </li> -->
-        </ul>
+      <hr />
+      <!-- end #logo -->
+      <!-- start #header -->
+      <!-- menu in header area the header div ends in utility file where header content right side link gets populated with login id cart and logout option -->
+      <div id="header">
+        <div id="menu">
+          <ul>
+            <li>
+              <a href="Home" class="first"
+                ><span class="glyphicon glyphicon-home">Home</span></a
+              >
+            </li>
+            <li>
+              <a href="TvList"><span class="glyphicon">Tvs</span></a>
+            </li>
+            <li>
+              <a href="SoundSystemList"
+                ><span class="glyphicon">SoundSystems</span></a
+              >
+            </li>
+            <li>
+              <a href="PhoneList"><span class="glyphicon">Phones</span></a>
+            </li>
+            <li>
+              <a href="Trending"><span class="glyphicon">Trending</span></a>
+            </li>
+          </ul>
+        </div>
+        <!-- end #menu -->
       </div>
-      <!-- end #menu -->
+    </div>
+  </body>
+</html>
