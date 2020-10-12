@@ -203,24 +203,24 @@ public class Utilities extends HttpServlet{
 		if(type.equals("tvs")){
 			Tv tv;
 			tv = SaxParserDataStore.tvs.get(name);
-			OrderItem orderitem = new OrderItem(tv.getName(), tv.getPrice(), tv.getImage(), tv.getRetailer());
+			OrderItem orderitem = new OrderItem(tv.getName(), tv.getPrice(), tv.getImage(), tv.getRetailer(), "tvs", tv.getDiscount());
 			orderItems.add(orderitem);
 		}
 		if(type.equals("soundsystems")){
 			SoundSystem soundsystem = null;
 			soundsystem = SaxParserDataStore.soundsystems.get(name);
-			OrderItem orderitem = new OrderItem(soundsystem.getName(), soundsystem.getPrice(), soundsystem.getImage(), soundsystem.getRetailer());
+			OrderItem orderitem = new OrderItem(soundsystem.getName(), soundsystem.getPrice(), soundsystem.getImage(), soundsystem.getRetailer(), "soundsystems", soundsystem.getDiscount());
 			orderItems.add(orderitem);
 		}
 		if(type.equals("phones")){
 			Phone phone = null;
 			phone = SaxParserDataStore.phones.get(name);
-			OrderItem orderitem = new OrderItem(phone.getName(), phone.getPrice(), phone.getImage(), phone.getRetailer());
+			OrderItem orderitem = new OrderItem(phone.getName(), phone.getPrice(), phone.getImage(), phone.getRetailer(), "phones", phone.getDiscount());
 			orderItems.add(orderitem);
 		}
 		if(type.equals("accessories")){	
 			Accessory accessory = SaxParserDataStore.accessories.get(name); 
-			OrderItem orderitem = new OrderItem(accessory.getName(), accessory.getPrice(), accessory.getImage(), accessory.getRetailer());
+			OrderItem orderitem = new OrderItem(accessory.getName(), accessory.getPrice(), accessory.getImage(), accessory.getRetailer(), "accessories", accessory.getDiscount());
 			orderItems.add(orderitem);
 		}
 		
@@ -228,7 +228,7 @@ public class Utilities extends HttpServlet{
 
 	// store the payment details for orders
 	public void storePayment(int orderId,
-		String orderName,double orderPrice,String userAddress,String creditCardNo,String customer){
+		String orderName,double orderPrice,String userAddress,String creditCardNo,String customer, String category, double discount, String storeId){
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments= new HashMap<Integer, ArrayList<OrderPayment>>();
 			// get the payment details file 
 		try
@@ -261,11 +261,8 @@ public class Utilities extends HttpServlet{
 		c.add(Calendar.DATE, 7);
 		shipDate = c.getTime();
 		int quantity = 1;
-		String category = "";
 		double shippingCost = 9.99;
-		double discount = 0;
 		double totalSales = orderPrice * quantity;
-		String storeId = "";
 		String storeAddress = "";
 
 			// add order details into database

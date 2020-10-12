@@ -55,9 +55,12 @@ public class CheckOut extends HttpServlet {
 		{
 			pw.print("<tr><td> Product Purchased:</td><td>");
 			pw.print(oi.getName()+"</td></tr><tr><td>");
-			pw.print("<input type='' name='orderPrice' value='"+oi.getPrice()+"'>");
+			pw.print("<input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'>");
+			pw.print("<input type='hidden' name='orderDiscount' value='"+oi.getDiscount()+"'>");
 			pw.print("<input type='hidden' name='orderName' value='"+oi.getName()+"'>");
 			pw.print("Product Price:</td><td>"+ oi.getPrice());
+			pw.print("</td></tr>");
+			pw.print("<tr><td>Product Discount: </td><td>"+oi.getDiscount());
 			pw.print("</td></tr>");
 		}
 		pw.print("<tr><td>");
@@ -91,7 +94,8 @@ public class CheckOut extends HttpServlet {
 		pw.print("<tr><td> Store: </td>");
 		pw.print("<td>");
 		pw.print("<select name='storeid'>");
-		pw.print("<option value='South Cicero' selected>South Cicero</option>");
+		pw.print("<option value='None' selected>None</option>");
+		pw.print("<option value='South Cicero'>South Cicero</option>");
 		pw.print("<option value='Forest Park'>Forest Park</option>");
 		pw.print("<option value='Joliet Rd'>Joliet Rd</option>");
 		pw.print("<option value='Bridgeview'>Bridgeview</option>");

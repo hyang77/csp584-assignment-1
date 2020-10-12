@@ -65,8 +65,11 @@ public class Cart extends HttpServlet {
 				pw.print("<td>"+i+".</td><td>"+oi.getName()+"</td><td>: "+oi.getPrice()+"</td>");
 				pw.print("<input type='hidden' name='orderName' value='"+oi.getName()+"'>");
 				pw.print("<input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'>");
+				pw.print("<input type='hidden' name='orderCategory' value='"+oi.getCategory()+"'>");
+				pw.print("<input type='hidden' name='orderDiscount' value='"+oi.getDiscount()+"'>");
+				
 				pw.print("</tr>");
-				total = total +oi.getPrice();
+				total = total +oi.getPrice()-oi.getDiscount();
 				i++;
 			}
 			pw.print("<input type='hidden' name='orderTotal' value='"+total+"'>");	

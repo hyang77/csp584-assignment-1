@@ -22,12 +22,32 @@ public class OrderItem extends HttpServlet{
 	private double price;
 	private String image;
 	private String retailer;
+	private String category;
+	private double discount;
 	
-	public OrderItem(String name, double price, String image, String retailer){
+	public OrderItem(String name, double price, String image, String retailer, String category,double discount){
 		this.name=name;
 		this.price=price;
 		this.image=image;
 		this.retailer = retailer;
+		this.category = category;
+		this.discount = discount;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getCategory(){
+		return category;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public double getDiscount() {
+		return discount;
 	}
 
 	public String getName() {

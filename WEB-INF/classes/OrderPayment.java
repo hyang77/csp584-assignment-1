@@ -18,6 +18,7 @@ public class OrderPayment implements Serializable{
 	private String userAddress;
 	private String creditCardNo;
 	
+	
 	public OrderPayment(int orderId,String userName,String orderName,double orderPrice,String userAddress,String creditCardNo){
 		this.orderId=orderId;
 		this.userName=userName;
