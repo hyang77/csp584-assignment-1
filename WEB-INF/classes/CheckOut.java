@@ -107,16 +107,6 @@ public class CheckOut extends HttpServlet {
 		pw.print("<option value='Bedford Park'>Bedford Park</option>");      
 		pw.print("</td></tr>");
 
-		//purchaseDate
-		Date date = new Date();
-		pw.print("<input type='hidden' name='purchaseDate' value="+date.toString()+">");
-		//shipDate
-		pw.print("<input type='hidden' name='shipDate' value=''>");
-		//product ID
-		//category
-		//quantity
-		//discount
-		//total sale
 
 
 		

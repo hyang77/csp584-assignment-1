@@ -251,7 +251,7 @@ public class Utilities extends HttpServlet{
 		}
 		ArrayList<OrderPayment> listOrderPayment = orderPayments.get(orderId);		
 		
-		OrderPayment orderpayment = new OrderPayment(orderId,username(),orderName,orderPrice,userAddress,creditCardNo);
+		OrderPayment orderpayment = new OrderPayment(orderId,username(),orderName,orderPrice,userAddress,creditCardNo, category, discount, storeId);
 		listOrderPayment.add(orderpayment);	
 			
 		Date purchaseDate = new Date(Calendar.getInstance().getTimeInMillis());

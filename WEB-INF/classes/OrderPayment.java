@@ -17,16 +17,38 @@ public class OrderPayment implements Serializable{
 	private double orderPrice;
 	private String userAddress;
 	private String creditCardNo;
+	private String category;
+	private double discount;
+	private String storeId;
 	
 	
-	public OrderPayment(int orderId,String userName,String orderName,double orderPrice,String userAddress,String creditCardNo){
+	public OrderPayment(int orderId,String userName,String orderName,double orderPrice,String userAddress,String creditCardNo, String category, double discount,String storeId){
 		this.orderId=orderId;
 		this.userName=userName;
 		this.orderName=orderName;
 	 	this.orderPrice=orderPrice;
 		this.userAddress=userAddress;
-	 	this.creditCardNo=creditCardNo;
+		this.creditCardNo=creditCardNo;
+		this.category = category;
+		this.discount = discount; 
+		this.storeId = storeId;
 		}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getCategory(){
+		return category;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public double getDiscount() {
+		return discount;
+	}
 
 	public String getUserAddress() {
 		return userAddress;

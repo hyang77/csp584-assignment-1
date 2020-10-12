@@ -35,7 +35,7 @@ public static void deleteOrder(int orderId,String orderName)
 	{
 		
 		getConnection();
-		String deleteOrderQuery ="Delete from customerorders where OrderId=? and orderName=?";
+		String deleteOrderQuery ="Delete from customerorders where OrderId=? and productId=?";
 		PreparedStatement pst = conn.prepareStatement(deleteOrderQuery);
 		pst.setInt(1,orderId);
 		pst.setString(2,orderName);
@@ -101,25 +101,24 @@ public static HashMap<Integer, ArrayList<OrderPayment>> selectOrder()
 		ArrayList<OrderPayment> orderList=new ArrayList<OrderPayment>();
 		while(rs.next())
 		{
-			if(!orderPayments.containsKey(rs.getInt("OrderId")))
+			if(!orderPayments.containsKey(rs.getInt("orderId")))
 			{	
 				ArrayList<OrderPayment> arr = new ArrayList<OrderPayment>();
 				orderPayments.put(rs.getInt("orderId"), arr);
 			}
-			ArrayList<OrderPayment> listOrderPayment = orderPayments.get(rs.getInt("OrderId"));		
-			System.out.println("data is"+rs.getInt("OrderId")+orderPayments.get(rs.getInt("OrderId")));
+			ArrayList<OrderPayment> listOrderPayment = orderPayments.get(rs.getInt("orderId"));			
+			System.out.println("data is"+rs.getInt("orderId"));
 
 			//add to orderpayment hashmap
-			OrderPayment order= new OrderPayment(rs.getInt("OrderId"),rs.getString("userName"),rs.getString("orderName"),rs.getDouble("orderPrice"),rs.getString("userAddress"),rs.getString("creditCardNo"));
+			OrderPayment order= new OrderPayment(rs.getInt("orderId"),rs.getString("userName"),rs.getString("productId"),rs.getDouble("price"),rs.getString("userAddress"),rs.getString("creditCardNo"),rs.getString("category"), rs.getDouble("discount"), rs.getString("storeId"));
 			listOrderPayment.add(order);
-					
 		}
 				
 					
 	}
 	catch(Exception e)
 	{
-		
+		System.out.println(e.toString());
 	}
 	return orderPayments;
 }
