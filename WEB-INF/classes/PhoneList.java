@@ -81,12 +81,6 @@ public class PhoneList extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-
-		if(user_type.equals("retailer")){
-			pw.print("<div><a href='AddProduct'>Add</a></div>");
-			pw.print("<div><a href='UpdateProduct'>Update</a></div>");
-
-		}
 		
 		pw.print("<a style='font-size: 24px;'>" + name + " Phones</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
@@ -119,7 +113,7 @@ public class PhoneList extends HttpServlet {
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' value='ViewReview' class='btnreview'></form></li>");
 					
-			if(user_type.equals("retailer")){
+			if(user_type.equals("manager")){
 				pw.print("<li><form method='post' action='RemoveProduct'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='type' value='tvs'>"+
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
