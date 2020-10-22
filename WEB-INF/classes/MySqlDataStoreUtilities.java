@@ -166,6 +166,32 @@ public static HashMap<String,User> selectUser()
 	return hm;			
 }
 
+public static ArrayList<ArrayList<String>> getInventoryList()
+{	
+	ArrayList<ArrayList<String>> InventoryList = new ArrayList<ArrayList<String>>();
+	try 
+	{
+		getConnection();
+		Statement stmt=conn.createStatement();
+		String selectInventoryQuery="SELECT productdetails.productName,productdetails.productPrice,Inventory.quantity" + " FROM productdetails" + " INNER JOIN Inventory ON productdetails.Id = Inventory.productId;";
+		ResultSet rs = stmt.executeQuery(selectInventoryQuery);
+		int i = 0;
+		while(rs.next())
+		{	
+			InventoryList.add(new ArrayList<String>());
+			InventoryList.get(i).add(rs.getString("productName"));
+			InventoryList.get(i).add(Double.toString(rs.getDouble("productPrice")));
+			InventoryList.get(i).add(Integer.toString(rs.getInt("quantity")));
+			i++;			
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return InventoryList;			
+}
+
 
 public static void Insertproducts()
 {
