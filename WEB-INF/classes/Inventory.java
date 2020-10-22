@@ -21,7 +21,9 @@ public class Inventory extends HttpServlet {
         String name = "Trending";
         
 		ArrayList<ArrayList<String>> InventoryItems = MySqlDataStoreUtilities.getInventoryList();
+		ArrayList<ArrayList<String>> ProductsOnSaleList = MySqlDataStoreUtilities.getProductsOnSaleList();
 		ArrayList<ArrayList<String>> RebatedProductsList = MySqlDataStoreUtilities.getRebatedProducts();
+		
 
 		Utilities utility = new Utilities(request, pw);
 		utility.printHtml("Header.html");
@@ -43,6 +45,26 @@ public class Inventory extends HttpServlet {
             for (int i = 0; i < InventoryItem.size(); i++) {
                 pw.print("<td>");
                 pw.print(InventoryItem.get(i));
+                pw.print("</td>");
+            }
+            pw.print("</tr>");
+        }
+		pw.print("</table></div></div></div>");
+
+		//get a list products that are currently on sale
+		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
+		pw.print("<a style='font-size: 24px;'>Products that are Currently On Sale</a>");
+        pw.print("</h2><div class='entry'><table id='bestseller'>");
+        //print table header
+        pw.print("<tr>");
+        pw.print("<th>Product Name</th>");
+        pw.print("<th>On Sale Date</th>");
+        pw.print("</tr>");
+        for (ArrayList<String> Item: ProductsOnSaleList) {
+            pw.print("<tr>");
+            for (int i = 0; i < Item.size(); i++) {
+                pw.print("<td>");
+                pw.print(Item.get(i));
                 pw.print("</td>");
             }
             pw.print("</tr>");

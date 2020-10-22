@@ -223,6 +223,35 @@ public static ArrayList<ArrayList<String>> getSoldProducts()
 	return SoldProductList;			
 }
 
+public static ArrayList<ArrayList<String>> getProductsOnSaleList()
+{	
+	ArrayList<ArrayList<String>> ProductsOnSaleList = new ArrayList<ArrayList<String>>();
+	try 
+	{
+		// SELECT productId AS productName, price, SUM(quantity) As sold_quantity, SUM(quantity) * price AS total_sales
+		// FROM CustomerOrders
+		// GROUP BY productId;
+		getConnection();
+		Statement stmt=conn.createStatement();
+		String selectProductsOnSaleQuery="select * from productOnSale Order by onSaleDate;";
+		ResultSet rs = stmt.executeQuery(selectProductsOnSaleQuery);
+		int i = 0;
+		while(rs.next())
+		{		
+			ProductsOnSaleList.add(new ArrayList<String>());
+			ProductsOnSaleList.get(i).add(rs.getString("productId"));
+			ProductsOnSaleList.get(i).add(rs.getDate("onSaleDate").toString());
+			i++;
+
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return ProductsOnSaleList;			
+}
+
 public static ArrayList<ArrayList<String>> getTotalSales()
 {	
 	//SELECT DATE(purchaseDate), SUM(totalSales)
