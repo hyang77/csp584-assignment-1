@@ -173,7 +173,7 @@ public static ArrayList<ArrayList<String>> getInventoryList()
 	{
 		getConnection();
 		Statement stmt=conn.createStatement();
-		String selectInventoryQuery="SELECT productdetails.productName,productdetails.productPrice,Inventory.quantity" + " FROM productdetails" + " INNER JOIN Inventory ON productdetails.Id = Inventory.productId;";
+		String selectInventoryQuery="SELECT productdetails.productName,productdetails.productPrice,Inventory.quantity" + " FROM productdetails" + " INNER JOIN Inventory ON productdetails.Id = Inventory.productId " + "ORDER BY Inventory.quantity;";
 		ResultSet rs = stmt.executeQuery(selectInventoryQuery);
 		int i = 0;
 		while(rs.next())
@@ -202,7 +202,7 @@ public static ArrayList<ArrayList<String>> getSoldProducts()
 		// GROUP BY productId;
 		getConnection();
 		Statement stmt=conn.createStatement();
-		String selectSoldProductQuery="SELECT productId AS productName, price, SUM(quantity) As sold_quantity, SUM(quantity) * price AS total_sales " + "FROM CustomerOrders " + "GROUP BY productId;";
+		String selectSoldProductQuery="SELECT productId AS productName, price, SUM(quantity) As sold_quantity, SUM(quantity) * price AS total_sales " + "FROM CustomerOrders " + "GROUP BY productId " + "ORDER BY total_sales DESC;";
 		ResultSet rs = stmt.executeQuery(selectSoldProductQuery);
 		int i = 0;
 		while(rs.next())
@@ -263,7 +263,7 @@ public static ArrayList<ArrayList<String>> getTotalSales()
 		
 		getConnection();
 		Statement stmt=conn.createStatement();
-		String selectTotalSalesQuery="SELECT DATE(purchaseDate) AS date, SUM(totalSales) AS total_sales " + "FROM CustomerOrders " + "GROUP BY date;";
+		String selectTotalSalesQuery="SELECT DATE(purchaseDate) AS date, SUM(totalSales) AS total_sales " + "FROM CustomerOrders " + "GROUP BY date " + "ORDER BY date DESC";
 		ResultSet rs = stmt.executeQuery(selectTotalSalesQuery);
 		int i = 0;
 		while(rs.next())
@@ -292,7 +292,7 @@ public static ArrayList<ArrayList<String>> getRebatedProducts()
 		
 		getConnection();
 		Statement stmt=conn.createStatement();
-		String selectRebatedProductsQuery="SELECT productName, productDiscount " + "FROM productdetails;";
+		String selectRebatedProductsQuery="SELECT productName, productDiscount " + "FROM productdetails " + "ORDER BY productDiscount DESC;";
 		ResultSet rs = stmt.executeQuery(selectRebatedProductsQuery);
 		int i = 0;
 		while(rs.next())
