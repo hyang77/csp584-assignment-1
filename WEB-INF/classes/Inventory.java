@@ -20,32 +20,34 @@ public class Inventory extends HttpServlet {
 		PrintWriter pw = response.getWriter();
         String name = "Trending";
         
-        ArrayList<ArrayList<String>> InventoryItems = MySqlDataStoreUtilities.getInventoryList();
+		ArrayList<ArrayList<String>> InventoryItems = MySqlDataStoreUtilities.getInventoryList();
+
+		Utilities utility = new Utilities(request, pw);
+		utility.printHtml("Header.html");
+		utility.printHtml("LeftNavigationBar.html");
+		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
+		pw.print("<a style='font-size: 24px;'>Inventory List</a>");
+        pw.print("</h2><div class='entry'><table id='bestseller'>");
+        //print table header
+        pw.print("<tr>");
+        pw.print("<th>Product Name</th>");
+        pw.print("<th>Product rice</th>");
+        pw.print("<th>Units left</th>");
+        pw.print("</tr>");
+
         for (ArrayList<String> InventoryItem: InventoryItems) {
-            System.out.println(InventoryItem);
+            pw.print("<tr>");
+            for (int i = 0; i < InventoryItem.size(); i++) {
+                pw.print("<td>");
+                pw.print(InventoryItem.get(i));
+                pw.print("</td>");
+            }
+            pw.print("</tr>");
         }
         
-		
-
-		// Utilities utility = new Utilities(request, pw);
-		// utility.printHtml("Header.html");
-		// utility.printHtml("LeftNavigationBar.html");
-		// pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		// pw.print("<a style='font-size: 24px;'>Best Products</a>");
-		// pw.print("</h2><div class='entry'><table id='bestseller'>");
-
-        // while(itr2.hasNext()) {
-        //  Bestrating best = (Bestrating)itr2.next();
- 		// pw.print("<tr>");
-		// pw.print("<td>");
-		// pw.print(best.getProductname());
-		// pw.print("</td>");
-		// pw.print("<td>");
-		// pw.print(best.getRating());
-		// pw.print("</td>");
-		// pw.print("</tr>");
-        // }
-		// pw.print("</table></div></div></div>");	
+ 		
+        
+		pw.print("</table></div></div></div>");	
 		
 		// pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 		// pw.print("<a style='font-size: 24px;'>Most Sold Products by Zipcode</a>");
@@ -86,7 +88,7 @@ public class Inventory extends HttpServlet {
 		
 		
 		
-		// utility.printHtml("Footer.html");
+		utility.printHtml("Footer.html");
 	}
 
 	protected void doPost(HttpServletRequest request,
