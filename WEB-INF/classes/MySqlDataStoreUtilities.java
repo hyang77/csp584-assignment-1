@@ -192,18 +192,28 @@ public static ArrayList<ArrayList<String>> getInventoryList()
 	return InventoryList;			
 }
 
-public static ArrayList<ArrayList<String>> getSoldProduct()
+public static ArrayList<ArrayList<String>> getSoldProducts()
 {	
 	ArrayList<ArrayList<String>> SoldProductList = new ArrayList<ArrayList<String>>();
 	try 
 	{
+		// SELECT productId AS productName, price, SUM(quantity) As sold_quantity, SUM(quantity) * price AS total_sales
+		// FROM CustomerOrders
+		// GROUP BY productId;
 		getConnection();
 		Statement stmt=conn.createStatement();
-		String selectSoldProductQuery="";
+		String selectSoldProductQuery="SELECT productId AS productName, price, SUM(quantity) As sold_quantity, SUM(quantity) * price AS total_sales " + "FROM CustomerOrders " + "GROUP BY productId;";
 		ResultSet rs = stmt.executeQuery(selectSoldProductQuery);
 		int i = 0;
 		while(rs.next())
 		{		
+			SoldProductList.add(new ArrayList<String>());
+			SoldProductList.get(i).add(rs.getString("productName"));
+			SoldProductList.get(i).add(Double.toString(rs.getDouble("price")));
+			SoldProductList.get(i).add(Integer.toString(rs.getInt("sold_quantity")));
+			SoldProductList.get(i).add(Double.toString(rs.getDouble("total_sales")));
+			i++;
+
 		}
 	}
 	catch(Exception e)
