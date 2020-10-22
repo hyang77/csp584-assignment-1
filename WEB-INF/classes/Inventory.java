@@ -34,7 +34,7 @@ public class Inventory extends HttpServlet {
         pw.print("<th>Product rice</th>");
         pw.print("<th>Units left</th>");
         pw.print("</tr>");
-
+        //create inventory list table
         for (ArrayList<String> InventoryItem: InventoryItems) {
             pw.print("<tr>");
             for (int i = 0; i < InventoryItem.size(); i++) {

@@ -192,6 +192,56 @@ public static ArrayList<ArrayList<String>> getInventoryList()
 	return InventoryList;			
 }
 
+public static ArrayList<ArrayList<String>> getSoldProduct()
+{	
+	ArrayList<ArrayList<String>> SoldProductList = new ArrayList<ArrayList<String>>();
+	try 
+	{
+		getConnection();
+		Statement stmt=conn.createStatement();
+		String selectSoldProductQuery="";
+		ResultSet rs = stmt.executeQuery(selectSoldProductQuery);
+		int i = 0;
+		while(rs.next())
+		{		
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return SoldProductList;			
+}
+
+public static ArrayList<ArrayList<String>> getTotalSales()
+{	
+	//SELECT DATE(purchaseDate), SUM(totalSales)
+	// FROM CustomerOrders
+	// GROUP BY purchaseDate;
+	ArrayList<ArrayList<String>> TotalSalesList = new ArrayList<ArrayList<String>>();
+	try 
+	{
+		
+		getConnection();
+		Statement stmt=conn.createStatement();
+		String selectTotalSalesQuery="SELECT DATE(purchaseDate) AS date, SUM(totalSales) AS total_sales " + "FROM CustomerOrders " + "GROUP BY date;";
+		ResultSet rs = stmt.executeQuery(selectTotalSalesQuery);
+		int i = 0;
+		while(rs.next())
+		{		
+			TotalSalesList.add(new ArrayList<String>());
+			TotalSalesList.get(i).add(rs.getDate("date").toString());
+			TotalSalesList.get(i).add(Double.toString(rs.getDouble("total_sales")));
+			i++;
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return TotalSalesList;			
+}
+
 
 public static void Insertproducts()
 {
