@@ -253,6 +253,34 @@ public static ArrayList<ArrayList<String>> getTotalSales()
 }
 
 
+public static ArrayList<ArrayList<String>> getRebatedProducts()
+{	
+	// SELECT productName, productDiscount
+	// FROM productdetails;
+	ArrayList<ArrayList<String>> RebatedProductsList = new ArrayList<ArrayList<String>>();
+	try 
+	{
+		
+		getConnection();
+		Statement stmt=conn.createStatement();
+		String selectRebatedProductsQuery="SELECT productName, productDiscount " + "FROM productdetails;";
+		ResultSet rs = stmt.executeQuery(selectRebatedProductsQuery);
+		int i = 0;
+		while(rs.next())
+		{		
+			RebatedProductsList.add(new ArrayList<String>());
+			RebatedProductsList.get(i).add(rs.getString("productName"));
+			RebatedProductsList.get(i).add(Double.toString(rs.getDouble("productDiscount")));
+			i++;
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return RebatedProductsList;			
+}
+
 public static void Insertproducts()
 {
 	try{

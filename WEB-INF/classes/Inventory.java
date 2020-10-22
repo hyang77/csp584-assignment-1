@@ -21,10 +21,13 @@ public class Inventory extends HttpServlet {
         String name = "Trending";
         
 		ArrayList<ArrayList<String>> InventoryItems = MySqlDataStoreUtilities.getInventoryList();
+		ArrayList<ArrayList<String>> RebatedProductsList = MySqlDataStoreUtilities.getRebatedProducts();
 
 		Utilities utility = new Utilities(request, pw);
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
+
+		//generate inventory list
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 		pw.print("<a style='font-size: 24px;'>Inventory List</a>");
         pw.print("</h2><div class='entry'><table id='bestseller'>");
@@ -44,46 +47,28 @@ public class Inventory extends HttpServlet {
             }
             pw.print("</tr>");
         }
-        
- 		
-        
+		pw.print("</table></div></div></div>");	
+
+		//generate products that have manufacturer rebates
+		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
+		pw.print("<a style='font-size: 24px;'>Products that Have Manufacturer Rebates</a>");
+        pw.print("</h2><div class='entry'><table id='bestseller'>");
+        //print table header
+        pw.print("<tr>");
+        pw.print("<th>Product Name</th>");
+        pw.print("<th>Discount</th>");
+        pw.print("</tr>");
+        for (ArrayList<String> Item: RebatedProductsList) {
+            pw.print("<tr>");
+            for (int i = 0; i < Item.size(); i++) {
+                pw.print("<td>");
+                pw.print(Item.get(i));
+                pw.print("</td>");
+            }
+            pw.print("</tr>");
+        }
 		pw.print("</table></div></div></div>");	
 		
-		// pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		// pw.print("<a style='font-size: 24px;'>Most Sold Products by Zipcode</a>");
-		// pw.print("</h2><div class='entry'><table id='bestseller'>");
-		// Iterator itr1 = mostsoldzip.iterator();
-        //  while(itr1.hasNext()) {
-        //  Mostsoldzip mostzip = (Mostsoldzip)itr1.next();
- 		// pw.print("<tr>");
-		// pw.println("<td border: 1px >");
-		
-		// pw.println(mostzip.getZipcode());
-		// pw.println("</td>");
-		// pw.println("<td border: 1px >");
-		// pw.println(mostzip.getCount());
-		// pw.println("</td>");
-		// pw.println("</tr>");
-        // }
-		// pw.print("</table></div></div></div>");	
-		
-		// pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		// pw.print("<a style='font-size: 24px;'>Most Sold Products</a>");
-		// pw.print("</h2><div class='entry'><table id='bestseller'>");
-		
-        //  Iterator itr = mostsold.iterator();
-        // while(itr.hasNext()) {
-        //  Mostsold most = (Mostsold)itr.next();
- 		// pw.println("<tr>");
-		// pw.println("<td border: 1px >");
-		// pw.println(most.getProductname());
-		// pw.println("</td>");
-		// pw.println("<td border: 1px >");
-		// pw.println(most.getCount());
-		// pw.println("</td>");
-		// pw.println("</tr>");
-        // }
-		// pw.print("</table></div></div></div>");
 		
 		
 		
