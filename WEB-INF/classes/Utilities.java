@@ -57,7 +57,7 @@ public void printHtml(String file) {
 			if(session.getAttribute("usertype").equals("manager"))
 			{
 				result = result + "<li><a href='AddProduct'><span class='glyphicon'>Addproduct</span></a></li>"
-					+ "<li><a href='Inventory'><span class='glyphicon'>Inventory</span></a></li>"
+					+ "<li><a href='InventoryChart'><span class='glyphicon'>Inventory</span></a></li>"
 					+"<li><a href='SalesReport'><span class='glyphicon'>SalesReport</span></a></li>"
 					+"<li><a href='DataVisualization'><span class='glyphicon'>Trending</span></a></li>"
 					+"<li><a href='DataAnalytics'><span class='glyphicon'>DataAnalytics</span></a></li>"
