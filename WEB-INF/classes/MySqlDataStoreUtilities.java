@@ -187,6 +187,29 @@ public static ArrayList<Inventory> getInventoryForChart()
 	}
 	return inventoryList;
 }
+
+public static ArrayList<SoldProduct> getSoldProductForChart() 
+{
+	ArrayList<SoldProduct> soldProductList = new ArrayList<SoldProduct>();
+	try 
+	{
+		getConnection();
+		Statement stmt=conn.createStatement();
+		String selectSoldProductQuery="SELECT productId AS productName, SUM(quantity) * price AS total_sales " + "FROM CustomerOrders " + "GROUP BY productId " + "ORDER BY total_sales DESC;";
+		ResultSet rs = stmt.executeQuery(selectSoldProductQuery);
+		while(rs.next())
+		{	
+			SoldProduct soldproduct= new SoldProduct(rs.getString("productName"), rs.getDouble("total_sales"));
+			soldProductList.add(soldproduct);	
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return soldProductList;
+}
+
 	
 
 public static ArrayList<ArrayList<String>> getInventoryList()
