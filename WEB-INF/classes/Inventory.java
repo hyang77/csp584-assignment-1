@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -51,6 +52,17 @@ public class Inventory extends HttpServlet {
         }
 		pw.print("</table></div></div></div>");
 
+		//click the buttont to view the inventory list by bar chart
+		pw.print("<div id='content'><div class='post'>");
+        pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Inventory Data Visualization</a></h2>"
+                + "<div class='entry'>");
+            
+        pw.print("<h3><button id='btnGetChartData'>View Chart</h3>");
+        pw.println("<div id='chart_div'></div>");
+        pw.println("</div></div></div>");
+        pw.println("<script type='text/javascript' src=\"https://www.gstatic.com/charts/loader.js\"></script>");
+        pw.println("<script type='text/javascript' src='InventoryChart.js'></script>");
+
 		//get a list products that are currently on sale
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 		pw.print("<a style='font-size: 24px;'>Products that are Currently On Sale</a>");
@@ -98,9 +110,19 @@ public class Inventory extends HttpServlet {
 		utility.printHtml("Footer.html");
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			ArrayList<ArrayList<String>> InventoryForChart = MySqlDataStoreUtilities.getInventoryForChart();
+			//convert object into json String
+			String inventoryJson = new Gson().toJson(InventoryForChart);
+			
+			response.setContentType("application/JSON");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(inventoryJson);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
-
 }
