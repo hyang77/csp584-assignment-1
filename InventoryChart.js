@@ -41,7 +41,7 @@ function drawChart(data) {
     //Invoke google's built in method to get data table object required by google.
      var chartData = google.visualization.arrayToDataTable(data);
      var options = {
-         title:'',
+         title:'Products and Units Left',
          titleTextStyle: {
             color: '#000000'
          },
