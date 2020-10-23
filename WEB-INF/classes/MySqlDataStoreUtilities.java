@@ -166,6 +166,32 @@ public static HashMap<String,User> selectUser()
 	return hm;			
 }
 
+public static ArrayList<ArrayList<String>> getInventoryForChart() 
+{
+	ArrayList<ArrayList<String>> InventoryForChart = new ArrayList<ArrayList<String>>();
+	try 
+	{
+		getConnection();
+		Statement stmt=conn.createStatement();
+		String selectInventoryQuery="SELECT productdetails.productName,Inventory.quantity" + " FROM productdetails" + " INNER JOIN Inventory ON productdetails.Id = Inventory.productId " + "ORDER BY Inventory.quantity;";
+		ResultSet rs = stmt.executeQuery(selectInventoryQuery);
+		int i = 0;
+		while(rs.next())
+		{	
+			InventoryForChart.add(new ArrayList<String>());
+			InventoryForChart.get(i).add(rs.getString("productName"));
+			InventoryForChart.get(i).add(Integer.toString(rs.getInt("quantity")));
+			i++;			
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return InventoryForChart;
+}
+	
+
 public static ArrayList<ArrayList<String>> getInventoryList()
 {	
 	ArrayList<ArrayList<String>> InventoryList = new ArrayList<ArrayList<String>>();
