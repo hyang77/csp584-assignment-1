@@ -40,6 +40,7 @@
     </style>
   </head>
   <body
+    onload="init()"
     style="
       margin: 0px !important;
       padding: 0 !important;
@@ -85,12 +86,11 @@
           <div name="autofillform">
             <input
               type="text"
-              name="complete-field"
+              name="searchId"
               value=""
               class="input"
-              id="complete-field"
+              id="searchId"
               onkeyup="doCompletion()"
-              autocomplete="off"
               placeholder="search here.."
               style="padding: 5px; font-size: 16px"
             />
