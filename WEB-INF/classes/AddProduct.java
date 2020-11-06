@@ -89,6 +89,10 @@ public class AddProduct extends HttpServlet {
 			
 			response.sendRedirect("AccessoryList");
 		}
+
+		// read an updated ProductCatalog.xml to reflect updates in the dabatase
+        MySqlDataStoreUtilities.Insertproducts();
+        System.out.println("Add: Productdetails table updated");
 		
 		
 	}
@@ -178,7 +182,12 @@ public class AddProduct extends HttpServlet {
 		pw.print("</fieldset></form></div>");
 		utility.printHtml("Footer.html");
 		
+		// read an updated ProductCatalog.xml to reflect updates in the dabatase
+		MySqlDataStoreUtilities.Insertproducts();
+		System.out.println("Update: Productdetails table updated");
 	}
+
+	
 		
 				
 	
