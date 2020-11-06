@@ -63,6 +63,7 @@ public class Cart extends HttpServlet {
 			{
 				pw.print("<tr>");
 				pw.print("<td>"+i+".</td><td>"+oi.getName()+"</td><td>: "+oi.getPrice()+"</td>");
+				pw.print("<input type='hidden' name='retailer' value='"+oi.getRetailer()+"'>");
 				pw.print("<input type='hidden' name='orderName' value='"+oi.getName()+"'>");
 				pw.print("<input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'>");
 				pw.print("<input type='hidden' name='orderCategory' value='"+oi.getCategory()+"'>");

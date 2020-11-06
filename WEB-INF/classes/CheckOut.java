@@ -55,6 +55,7 @@ public class CheckOut extends HttpServlet {
 		{
 			pw.print("<tr><td> Product Purchased:</td><td>");
 			pw.print(oi.getName()+"</td></tr><tr><td>");
+			pw.print("<input type='hidden' name='retailer' value='"+oi.getRetailer()+"'>");
 			pw.print("<input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'>");
 			pw.print("<input type='hidden' name='orderDiscount' value='"+oi.getDiscount()+"'>");
 			pw.print("<input type='hidden' name='orderName' value='"+oi.getName()+"'>");
@@ -85,9 +86,9 @@ public class CheckOut extends HttpServlet {
 		//delivery option
 		pw.print("<tr><td> Delivery Option: </td>");
 		pw.print("<td>");
-		pw.print("<select name='delivery'>");
-		pw.print("<option value='homedelivery' selected>Home Delivery</option>");
-		pw.print("<option value='storepickup'>Store Pickup</option>");   
+		pw.print("<select name='deliveryType'>");
+		pw.print("<option value='Home Delivery' selected>Home Delivery</option>");
+		pw.print("<option value='Store Pickup'>Store Pickup</option>");   
 		pw.print("</td></tr>");
 
 		//store id
