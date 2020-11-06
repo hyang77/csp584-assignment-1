@@ -119,6 +119,8 @@ public class PhoneList extends HttpServlet {
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 						"<input type='hidden' name='access' value=''>"+
 						"<input type='submit' name='remove' value='Remove' class='btnreview'></form></li>");
+				//TODO: style update button
+				pw.print("<li><a href='AddProduct?id="+phone.getId()+"&name="+phone.getName()+"&price="+phone.getPrice()+"&image="+phone.getImage()+"&manufacture="+phone.getRetailer()+"&condition="+phone.getCondition()+"&discount="+phone.getDiscount()+"'>Update</a></li>");
 			}
 			pw.print("</ul></div></td>");
 			if (i % 3 == 0 || i == size)

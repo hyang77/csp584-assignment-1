@@ -117,6 +117,8 @@ public class SoundSystemList extends HttpServlet {
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 						"<input type='hidden' name='access' value=''>"+
 						"<input type='submit' name='remove' value='Remove' class='btnreview'></form></li>");
+				//TODO: style update button
+				pw.print("<li><a href='AddProduct?id="+soundsystem.getId()+"&name="+soundsystem.getName()+"&price="+soundsystem.getPrice()+"&image="+soundsystem.getImage()+"&manufacture="+soundsystem.getRetailer()+"&condition="+soundsystem.getCondition()+"&discount="+soundsystem.getDiscount()+"'>Update</a></li>");
 			}
 			pw.print("</ul></div></td>");
 			if(i%3==0 || i == size) pw.print("</tr>");

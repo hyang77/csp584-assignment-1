@@ -116,6 +116,8 @@ public class AccessoryList extends HttpServlet {
 							"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 							"<input type='hidden' name='access' value=''>"+
 							"<input type='submit' name='remove' value='Remove' class='btnreview'></form></li>");
+					//TODO: style update button
+				    pw.print("<li><a href='AddProduct?id="+accessory.getId()+"&name="+accessory.getName()+"&price="+accessory.getPrice()+"&image="+accessory.getImage()+"&manufacture="+accessory.getRetailer()+"&condition="+accessory.getCondition()+"&discount="+accessory.getDiscount()+"'>Update</a></li>");
 				}
 
 				pw.print("</ul></div></td>");
