@@ -121,6 +121,28 @@ public static void insertOrder(int orderId,String userName,double price,String u
 	}		
 }
 
+//get customer information from database and return an arraylist 
+public static ArrayList<String> getCustomerInfo(String username)
+{
+	ArrayList<String> customerArr = new ArrayList<String>();
+	try {
+		getConnection();
+		String getCustomerInfoQuery = "select customerName, customerAge, customerOccupation from customers where username=?";
+		PreparedStatement pst = conn.prepareStatement(getCustomerInfoQuery);
+		pst.setString(1, username);
+		ResultSet rs = pst.executeQuery();
+		while(rs.next()) {
+			//add data into arraylist
+			customerArr.add(rs.getString("customerName"));
+			customerArr.add(Integer.toString(rs.getInt("customerAge")));
+			customerArr.add(rs.getString("customerOccupation"));
+		}	
+	} catch(Exception e) {
+		e.printStackTrace();
+	}
+	return customerArr;
+}
+
 public static HashMap<Integer, ArrayList<OrderPayment>> selectOrder()
 {	
 
