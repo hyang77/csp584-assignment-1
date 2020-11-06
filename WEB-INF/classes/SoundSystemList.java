@@ -113,7 +113,7 @@ public class SoundSystemList extends HttpServlet {
 					
 			if(user_type.equals("manager")){
 				pw.print("<li><form method='post' action='RemoveProduct'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-						"<input type='hidden' name='type' value='tvs'>"+
+						"<input type='hidden' name='type' value='soundsystems'>"+
 						"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 						"<input type='hidden' name='access' value=''>"+
 						"<input type='submit' name='remove' value='Remove' class='btnreview'></form></li>");
