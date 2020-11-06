@@ -43,9 +43,11 @@ public static void deleteOrder(int orderId,String orderName)
 	}
 	catch(Exception e)
 	{
-			
+		e.printStackTrace();
 	}
 }
+
+
 
 public static void insertOrder(int orderId,String userName,double price,String userAddress,String creditCardNo, Date purchaseDate, Date shipDate, String productId, String category, int quantity, double shippingCost, double discount, double totalSales, String storeId, String storeAddress)
 //MySqlDataStoreUtilities.insertOrder(orderId, username(), orderName, orderPrice, userAddress, creditCardNo, purchaseDate, shipDate, quantity, category, shippingCost, discount, totalSales, storeId, storeAddress);
@@ -81,7 +83,7 @@ public static void insertOrder(int orderId,String userName,double price,String u
 	}
 	catch(Exception e)
 	{
-	
+		e.printStackTrace();
 	}		
 }
 
@@ -142,7 +144,7 @@ public static void insertUser(String username,String password,String repassword,
 	}
 	catch(Exception e)
 	{
-	
+		e.printStackTrace();
 	}	
 }
 
@@ -162,6 +164,7 @@ public static HashMap<String,User> selectUser()
 	}
 	catch(Exception e)
 	{
+		e.printStackTrace();
 	}
 	return hm;			
 }
@@ -517,6 +520,7 @@ public static HashMap<String,Tv> getTvs()
 	}
 	catch(Exception e)
 	{
+		e.printStackTrace();
 	}
 	return hm;			
 }
@@ -542,6 +546,7 @@ public static HashMap<String,SoundSystem> getSoundSystems()
 	}
 	catch(Exception e)
 	{
+		e.printStackTrace();
 	}
 	return hm;			
 }
@@ -566,6 +571,7 @@ public static HashMap<String,Phone> getPhones()
 	}
 	catch(Exception e)
 	{
+		e.printStackTrace();
 	}
 	return hm;			
 }
@@ -591,6 +597,7 @@ public static HashMap<String,Accessory> getAccessories()
 	}
 	catch(Exception e)
 	{
+		e.printStackTrace();
 	}
 	return hm;			
 }
