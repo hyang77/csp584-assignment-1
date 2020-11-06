@@ -284,6 +284,29 @@ public void printHtml(String file) {
 		double totalSales = orderPrice * quantity;
 		String storeAddress = "";
 
+		// variables to store transaction data
+		String loginId = "123";
+		String customerName = "Haoli";
+		int customerAge = 23;
+		String customerOccupation = "student";
+		String creditCardNumber = creditCardNo;
+		// int orderId
+		Date orderDate = purchaseDate;
+		Date expectedDeliveryDate = shipDate;
+		Date actualDeliveryDate = shipDate;
+		String productId = orderName;
+		String productName = orderName;
+		// String category
+		String manufacturer = "samsung";
+		double reviewRating = 5;
+		String deliveryTrackingId = "0909";
+		String deliveryType = "Store pickup";
+		String deliveryZipCode = "60616";
+		String transactionStatus = "Approved";
+		boolean orderReturned = true;
+		boolean orderDeliverOnTime = true;
+
+
 			// add order details into database
 		try
 		{	if(session.getAttribute("usertype").equals("retailer"))
@@ -291,6 +314,8 @@ public void printHtml(String file) {
 				MySqlDataStoreUtilities.insertOrder(orderId, customer, orderPrice, userAddress, creditCardNo, purchaseDate, shipDate, orderName, category, quantity, shippingCost, discount, totalSales, storeId, storeAddress);
 			}else{
 				MySqlDataStoreUtilities.insertOrder(orderId, username(), orderPrice, userAddress, creditCardNo, purchaseDate, shipDate, orderName, category, quantity, shippingCost, discount, totalSales, storeId, storeAddress);
+				//create a transaction whenever an order is placed
+				MySqlDataStoreUtilities.createTransaction(loginId, customerName, customerAge, customerOccupation, creditCardNumber, orderId, orderDate, expectedDeliveryDate, actualDeliveryDate, productId, productName, category, manufacturer, reviewRating, deliveryTrackingId, deliveryType, deliveryZipCode, transactionStatus, orderReturned, orderDeliverOnTime);
 			}
 		}
 		catch(Exception e)
