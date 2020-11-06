@@ -47,7 +47,41 @@ public static void deleteOrder(int orderId,String orderName)
 	}
 }
 
+public static void createTransaction(String loginId, String customerName, int customerAge, String customerOccupation, String creditCardNumber, int orderId, Date orderDate, Date expectedDeliveryDate, Date actualDeliveryDate, String productId, String productName, String category, String manufacturer, double reviewRating, String deliveryTrackingId, String deliveryType, String deliveryZipCode, String transactionStatus, boolean orderReturned, boolean orderDeliverOnTime) {
+	try {
+		getConnection();
+		String createTransactionQuery = "INSERT INTO Transactions(loginId, customerName, customerAge, customerOccupation, creditCardNumber, orderId, orderDate, expectedDeliveryDate, actualDeliveryDate, productId, productName, category, manufacturer, reviewRating, deliveryTrackingId, deliveryType, deliveryZipCode, transactionStatus, orderReturned, orderDeliverOnTime)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
+		PreparedStatement pst = conn.prepareStatement(createTransactionQuery);
+
+		//set the parameter for each column and execute the prepared statement
+		pst.setString(1,loginId);
+		pst.setString(2,customerName);
+		pst.setInt(3,customerAge);
+		pst.setString(4,customerOccupation);
+		pst.setString(5,creditCardNumber);
+		pst.setInt(6,orderId);
+		pst.setDate(7,new java.sql.Date(orderDate.getTime()));
+		pst.setDate(8,new java.sql.Date(expectedDeliveryDate.getTime()));
+		pst.setDate(9,new java.sql.Date(actualDeliveryDate.getTime()));
+		pst.setString(10,productId);
+		pst.setString(11,productName);
+		pst.setString(12,category);
+		pst.setString(13,manufacturer);
+		pst.setDouble(14,reviewRating);
+		pst.setString(15,deliveryTrackingId);
+		pst.setString(16,deliveryType);
+		pst.setString(17,deliveryZipCode);
+		pst.setString(18,transactionStatus);
+		pst.setBoolean(19,orderReturned);
+		pst.setBoolean(20,orderDeliverOnTime);
+
+		pst.execute();
+
+	} catch(Exception e) {
+		e.printStackTrace();
+	}
+}
 
 public static void insertOrder(int orderId,String userName,double price,String userAddress,String creditCardNo, Date purchaseDate, Date shipDate, String productId, String category, int quantity, double shippingCost, double discount, double totalSales, String storeId, String storeAddress)
 //MySqlDataStoreUtilities.insertOrder(orderId, username(), orderName, orderPrice, userAddress, creditCardNo, purchaseDate, shipDate, quantity, category, shippingCost, discount, totalSales, storeId, storeAddress);
