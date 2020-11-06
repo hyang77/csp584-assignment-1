@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import java.io.*; 
 import java.time.LocalDateTime;   
 import java.util.Calendar;
+import java.util.Random;
+
 
 @WebServlet("/Utilities")
 
@@ -245,9 +247,39 @@ public void printHtml(String file) {
 		
 	}
 
+	public boolean isDeliverOnTime(Date dateExpected, Date dateActual) {
+		boolean flag = false;
+		try {
+			if (dateExpected.compareTo(dateActual) > 0) {
+				flag = true;
+			} else if (dateExpected.compareTo(dateActual) < 0) {
+				flag = false;
+			} else if (dateExpected.compareTo(dateActual) == 0) {
+				flag = true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	public String randomTrackingId() {
+		StringBuilder trackingId = new StringBuilder(10);
+		try {
+			String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+			for (int i = 0; i < 10; i++) {
+				trackingId.append(chars.charAt(new Random().nextInt(chars.length())));
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return trackingId.toString();
+	}
+
 	// store the payment details for orders
 	public void storePayment(int orderId,
-		String orderName,double orderPrice,String userAddress,String creditCardNo,String customer, String category, double discount, String storeId){
+		String orderName,double orderPrice,String userAddress,String creditCardNo,String customer, String category, double discount, String storeId, String retailer, String deliveryType){
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments= new HashMap<Integer, ArrayList<OrderPayment>>();
 			// get the payment details file 
 		try
@@ -285,26 +317,41 @@ public void printHtml(String file) {
 		String storeAddress = "";
 
 		// variables to store transaction data
-		String loginId = "123";
-		String customerName = "Haoli";
-		int customerAge = 23;
-		String customerOccupation = "student";
+		//get customer data and store in variables
+		ArrayList<String> customerArr = MySqlDataStoreUtilities.getCustomerInfo(username());
+		String loginId = username(); //username
+		String customerName = customerArr.get(0); //get customer's full name
+		int customerAge = Integer.parseInt(customerArr.get(1)); //get customer's age
+		String customerOccupation = customerArr.get(2); //get customer's occupation
 		String creditCardNumber = creditCardNo;
 		// int orderId
+		// get random integar for date interval
+		int randomExpected = new Random().nextInt(9);
+		int ramdomActual = new Random().nextInt(9);
+		//assign random date to expectedDeliveryDate and actualDeliveryDate
 		Date orderDate = purchaseDate;
-		Date expectedDeliveryDate = shipDate;
-		Date actualDeliveryDate = shipDate;
+		//assign random date to expectedDeliveryDate and actualDeliveryDate
+		Date expectedDeliveryDate = new Date();
+		c.setTime(expectedDeliveryDate); 
+		c.add(Calendar.DATE, randomExpected);
+		expectedDeliveryDate = c.getTime();
+		Date actualDeliveryDate = new Date();
+		c.setTime(actualDeliveryDate); 
+		c.add(Calendar.DATE, ramdomActual);
+		actualDeliveryDate = c.getTime();
+
 		String productId = orderName;
 		String productName = orderName;
 		// String category
-		String manufacturer = "samsung";
-		double reviewRating = 5;
-		String deliveryTrackingId = "0909";
-		String deliveryType = "Store pickup";
-		String deliveryZipCode = "60616";
-		String transactionStatus = "Approved";
-		boolean orderReturned = true;
-		boolean orderDeliverOnTime = true;
+		String manufacturer = retailer;
+		double reviewRating = new Random().nextInt(5);
+		String deliveryTrackingId = randomTrackingId();
+		// String deliveryType
+		//create strings to select randomly
+		String[] status = {"Approved","Disputed"};
+		String transactionStatus = status[new Random().nextInt(status.length)];
+		boolean orderReturned = new Random().nextBoolean();
+		boolean orderDeliverOnTime = isDeliverOnTime(expectedDeliveryDate, actualDeliveryDate);
 
 
 			// add order details into database
