@@ -279,7 +279,7 @@ public void printHtml(String file) {
 
 	// store the payment details for orders
 	public void storePayment(int orderId,
-		String orderName,double orderPrice,String userAddress,String creditCardNo,String customer, String category, double discount, String storeId, String retailer, String deliveryType){
+		String orderName,double orderPrice,String userAddress,String creditCardNo,String customer, String category, double discount, String storeName, String retailer, String deliveryType){
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments= new HashMap<Integer, ArrayList<OrderPayment>>();
 			// get the payment details file 
 		try
@@ -302,7 +302,7 @@ public void printHtml(String file) {
 		}
 		ArrayList<OrderPayment> listOrderPayment = orderPayments.get(orderId);		
 		
-		OrderPayment orderpayment = new OrderPayment(orderId,username(),orderName,orderPrice,userAddress,creditCardNo, category, discount, storeId);
+		OrderPayment orderpayment = new OrderPayment(orderId,username(),orderName,orderPrice,userAddress,creditCardNo, category, discount, storeName);
 		listOrderPayment.add(orderpayment);	
 			
 		Date purchaseDate = new Date(Calendar.getInstance().getTimeInMillis());
@@ -314,8 +314,19 @@ public void printHtml(String file) {
 		int quantity = 1;
 		double shippingCost = 9.99;
 		double totalSales = orderPrice * quantity;
-		String storeAddress = "";
+		//get store informtaion from database
+		ArrayList<String> storeArr = MySqlDataStoreUtilities.getStoreInfo(storeName);
+		String storeId = "";
+		String storeAddress ="";
+		if (deliveryType.equals("Home Delivery")) {
+			storeId = "N/A";
+			storeAddress = "N/A";
+		} else {
+			storeId = storeArr.get(0);
+		    storeAddress = storeArr.get(2) + ", " + storeArr.get(3) + ", " + storeArr.get(4) + ", " + storeArr.get(5);
 
+		}
+			
 		// variables to store transaction data
 		//get customer data and store in variables
 		ArrayList<String> customerArr = MySqlDataStoreUtilities.getCustomerInfo(username());
@@ -347,6 +358,14 @@ public void printHtml(String file) {
 		double reviewRating = new Random().nextInt(5);
 		String deliveryTrackingId = randomTrackingId();
 		// String deliveryType
+		String deliveryZipCode = "";
+		if (deliveryType.equals("Home Delivery")) {
+			deliveryZipCode = userAddress;
+		} else {
+			deliveryZipCode = storeArr.get(5);
+		}
+			 
+		
 		//create strings to select randomly
 		String[] status = {"Approved","Disputed"};
 		String transactionStatus = status[new Random().nextInt(status.length)];

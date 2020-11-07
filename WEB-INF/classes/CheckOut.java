@@ -94,9 +94,8 @@ public class CheckOut extends HttpServlet {
 		//store id
 		pw.print("<tr><td> Store: </td>");
 		pw.print("<td>");
-		pw.print("<select name='storeid'>");
-		pw.print("<option value='None' selected>None</option>");
-		pw.print("<option value='South Cicero'>South Cicero</option>");
+		pw.print("<select name='storeName'>");
+		pw.print("<option value='South Cicero' selected>South Cicero</option>");
 		pw.print("<option value='Forest Park'>Forest Park</option>");
 		pw.print("<option value='Joliet Rd'>Joliet Rd</option>");
 		pw.print("<option value='Bridgeview'>Bridgeview</option>");

@@ -35,7 +35,7 @@ public class Payment extends HttpServlet {
 
 		String userAddress=request.getParameter("userAddress");
 		String creditCardNo=request.getParameter("creditCardNo");
-		String storeId = request.getParameter("storeid");
+		String storeName = request.getParameter("storeName");
 		String deliveryType = request.getParameter("deliveryType");
 		if(session.getAttribute("usertype").equals("retailer")){
 			Customername =request.getParameter("customername");
@@ -74,7 +74,7 @@ public class Payment extends HttpServlet {
 
 					//set the parameter for each column and execute the prepared statement
 
-					utility.storePayment(orderId,oi.getName(),oi.getPrice(),userAddress,creditCardNo,Customername, oi.getCategory(), oi.getDiscount(), storeId, oi.getRetailer(), deliveryType);
+					utility.storePayment(orderId,oi.getName(),oi.getPrice(),userAddress,creditCardNo,Customername, oi.getCategory(), oi.getDiscount(), storeName, oi.getRetailer(), deliveryType);
 				
 				}
 

@@ -143,6 +143,31 @@ public static ArrayList<String> getCustomerInfo(String username)
 	return customerArr;
 }
 
+//get store information from database and return an arraylist
+public static ArrayList<String> getStoreInfo(String storeName)
+{
+	ArrayList<String> storeArr = new ArrayList<String>();
+	try {
+		getConnection();
+		String getStoreInfoQuery = "select * from stores where storeName=?";
+		PreparedStatement pst = conn.prepareStatement(getStoreInfoQuery);
+		pst.setString(1, storeName);
+		ResultSet rs = pst.executeQuery();
+		while(rs.next()) {
+			//add data into arraylist
+			storeArr.add(Integer.toString(rs.getInt("storeId")));
+			storeArr.add(rs.getString("storeName"));
+			storeArr.add(rs.getString("streetName"));
+			storeArr.add(rs.getString("city"));
+			storeArr.add(rs.getString("state"));
+			storeArr.add(rs.getString("zipcode"));
+		}	
+	} catch(Exception e) {
+		e.printStackTrace();
+	}
+	return storeArr;
+}
+
 public static HashMap<Integer, ArrayList<OrderPayment>> selectOrder()
 {	
 
